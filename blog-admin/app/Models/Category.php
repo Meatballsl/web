@@ -9,6 +9,7 @@ class Category extends Model
     protected $table = 'lsl_category';
 
     public $timestamps = false;
+    public $guarded = ['_token'];
 
     public static function getCategory()
     {

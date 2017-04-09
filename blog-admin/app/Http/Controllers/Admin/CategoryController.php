@@ -17,10 +17,20 @@ class CategoryController extends CommonController
     {
         $data = Category::getCategory();
 
-        return view('admin.list')->with('data', $data);
+        return view('admin.category.list')->with('data', $data);
 
     }
 
+    /**GET
+     *admin/cate/create
+     * 创建
+     */
+    public function create()
+    {
+        $data = Category::where('pid', 0)->get();
+        return view('admin.category.add')->with('data', $data);
+
+    }
 
     /**
      * POST
@@ -46,19 +56,15 @@ class CategoryController extends CommonController
             return back()->withErrors($validate);
 
         }
+        $add = Category::create($input);
+
+        if (!$add) {
+            return back()->with("msg", "add error");
+        }
         return redirect('admin/cate');
     }
 
-    /**GET
-     *admin/cate/create
-     * 创建
-     */
-    public function create()
-    {
-        $data = Category::where('pid', 0)->get();
-        return view('admin.add')->with('data', $data);
 
-    }
 
     /**
      * admin/cate/{cate}
@@ -71,12 +77,35 @@ class CategoryController extends CommonController
     }
 
     /**
+     * admin/cate/{cate}/edit
+     * GET|HEAD
+     * 修改
+     */
+    public function edit(Request $request, $id)
+    {
+        $field = Category::find($id);//前端无需遍历
+
+        $data = Category::where('pid', 0)->get();//前端通过遍历
+        return view('admin.category.edit', compact('field', 'data'));
+    }
+
+    /**
      * PUT|PATCH
      * admin/cate/{cate}
      * 更新
+     * 前端： <input type="hidden" name="_method" value="put">
      */
-    public function update()
+    public function update(Request $request, $id)
     {
+        $input = $request->except(['_method', '_token']);
+
+        $result = Category::where('id', $id)->update($input);
+
+        if ($result===false) {
+            return back()->with('msg', 'update error');
+        }
+
+        return redirect('admin/cate');
 
 
     }
@@ -86,20 +115,24 @@ class CategoryController extends CommonController
      * admin/cate/{cate}
      * 删除
      */
-    public function destroy()
+    public function destroy(Request $request, $id)
     {
-
+        //父级删掉，儿子变父亲
+        $result = Category::where('id',$id)->delete();
+        Category::where('pid',$id)->update(['pid'=>0]);
+        if(!$result){
+            return [
+                'code'=>1,
+                'msg'=>'delete error'
+            ];
+        }
+        return [
+            'code'=>0,
+            'msg'=>'delete success'
+        ];
     }
 
-    /**
-     * admin/cate/{cate}/edit
-     * GET|HEAD
-     * 修改
-     */
-    public function edit()
-    {
 
-    }
 
     public function changeOrder(Request $request)
     {
