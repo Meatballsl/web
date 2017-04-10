@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Validator;
 class CategoryController extends CommonController
 {
     /**GET
-     * admin/cate
+     * admin/article
      * 查看列表
      */
     public function index()
