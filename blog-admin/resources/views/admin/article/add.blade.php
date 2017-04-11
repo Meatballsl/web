@@ -42,8 +42,7 @@
                 <tr>
                     <th width="120"><i class="require">*</i>分类：</th>
                     <td>
-                        <select name="pid">
-                            <option value="0">无父级类</option>
+                        <select name="cid">
                             @foreach($data as  $value){
                             <option value="{{$value->id}}">{{$value->name}}</option>
                             }
@@ -54,13 +53,13 @@
                 <tr>
                     <th><i class="require">*</i>文章标题：</th>
                     <td>
-                        <input type="text" name="name" class="lg">
+                        <input type="text" name="title" class="lg">
                     </td>
                 </tr>
                 <tr>
                     <th>简介</th>
                     <td>
-                        <textarea></textarea>
+                        <textarea name="summary"></textarea>
                     </td>
                 </tr>
                 <tr>
@@ -85,10 +84,32 @@
                 <tr>
                     <th><i class="require">*</i>内容：</th>
                     <td>
-                        <script id="editor" type="text/plain" style="width:884px;height:500px;"></script>
+                        <script name="content" id="editor" type="text/plain" style="width:884px;height:500px;"></script>
                     </td>
                 </tr>
 
+                <tr>
+                    <th>是否公开：</th>
+                    <td>
+                        <label><input type="radio" name="is_public" value="1">公开</label>
+                        <label><input type="radio" name="is_public" value="0">私密</label>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>评论：</th>
+                    <td>
+                        <label><input type="radio" name="is_comment" value="1">允许</label>
+                        <label><input type="radio" name="is_comment" value="0">不允许</label>
+                    </td>
+                </tr>
+                <tr>
+                    <th>是否置顶：</th>
+                    <td>
+                        <label><input type="radio" name="is_top" value="1">是</label>
+                        <label><input type="radio" name="is_top" value="0">否</label>
+                    </td>
+                </tr>
                 <tr>
                     <th></th>
                     <td>
