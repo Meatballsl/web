@@ -10,14 +10,16 @@ use Illuminate\Support\Facades\Validator;
 class ArticleController extends CommonController
 {
     /**GET
-     * admin/cate
+     * admin/article
      * 查看列表
      */
     public function index()
     {
-        $data = [];
+        $data = Article::orderBy('id')->paginate(1);
 
-        return view('admin.category.list')->with('data', $data);
+        $status = ['0'=>'未审核','1'=>'审核中','审核通过'];
+
+        return view('admin.article.index',compact('data','status'));
 
     }
 
