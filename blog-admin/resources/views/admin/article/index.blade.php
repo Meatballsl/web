@@ -60,32 +60,13 @@
     </form>
     <!--搜索结果页面 列表 结束-->
     <script>
-        function changeOrder(obj, id) {
-            $orderNumber = $(obj).val();
-            $.post("{{url('admin/changeOrder')}}",
-                    {
-                        '_token': "{{csrf_token()}}",
-                        'id': id,
-                        'orderNumber': $orderNumber,
-                    },
-                    function (data) {
-                        if (data.status == 0) {
-                            layer.alert(data.msg, {icon: 6});
-                            window.location.reload();
-                        }
-                        else {
-                            layer.alert(data.msg, {icon: 5});
-                        }
-
-                    });
-        }
 
         function deleteHadle(id) {
 
             layer.confirm('确认删除？', {
                 btn: ['确定', '取消'] //按钮
             }, function () {
-                $.post("{{url('admin/cate/')}}/" + id, {
+                $.post("{{url('admin/article/')}}/" + id, {
                     '_method': 'delete',
                     '_token': "{{csrf_token()}}"
                 }, function (data) {

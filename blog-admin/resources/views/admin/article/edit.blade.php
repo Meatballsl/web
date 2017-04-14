@@ -4,7 +4,7 @@
     <div class="crumb_warp">
         <!--<i class="fa fa-bell"></i> 欢迎使用登陆网站后台，建站的首选工具。-->
         <i class="fa fa-home"></i> <a href="{{url('admin/info')}}">首页</a> &raquo;<a
-                href="{{url('admin/cate')}}">文章管理</a> &raquo;编辑文章
+                href="{{url('admin/article')}}">文章管理</a> &raquo;编辑文章
     </div>
     <!--面包屑导航 结束-->
 
@@ -34,8 +34,9 @@
     <!--结果集标题与导航组件 结束-->
 
     <div class="result_wrap">
-        <form method="post" action="{{url('admin/article')}}">
+        <form method="post" action="{{url('admin/article')}}/{{$field->id}}">
             {{csrf_field()}}
+            <input type="hidden" name="_method" value="put">
             <table class="add_tab">
                 <tbody>
 
@@ -44,7 +45,7 @@
                     <td>
                         <select name="cid">
                             @foreach($data as  $value){
-                            <option value="{{$value->id}}">{{$value->name}}</option>
+                            <option value="{{$value->id}}" @if($value->id==$field->cid) selected="selected" @endif>{{$value->name}}</option>
                             }
                             @endforeach
                         </select>
@@ -53,19 +54,19 @@
                 <tr>
                     <th><i class="require">*</i>文章标题：</th>
                     <td>
-                        <input type="text" name="title" value="" class="lg">
+                        <input type="text" name="title" value="{{$field->auther}}" class="lg">
                     </td>
                 </tr>
                 <tr>
                     <th>简介</th>
                     <td>
-                        <textarea name="summary"></textarea>
+                        <textarea name="summary">{{$field->summary}}</textarea>
                     </td>
                 </tr>
                 <tr>
                     <th><i class="require">*</i>封面：</th>
                     <td>
-                        <input type="text" name="thumb" class="lg">
+                        <input type="text" name="thumb" class="lg"  value="{{$field->thumb}}">
                         <form>
                             <div id="queue"></div>
                             <input id="file_upload" name="file_upload" type="file" multiple="true">
@@ -77,37 +78,37 @@
                 <tr>
                     <th>缩略图</th>
                     <td>
-                        <img src="" id="small_thumb" style="max-width:100px" >
+                        <img src="/{{$field->thumb}}" id="small_thumb" style="max-width:100px" >
                     </td>
                 </tr>
 
                 <tr>
                     <th><i class="require">*</i>内容：</th>
                     <td>
-                        <script name="content" id="editor" type="text/plain" style="width:884px;height:500px;"></script>
+                        <script name="content" id="editor" type="text/plain" style="width:884px;height:500px;" >{!! $field->content !!}</script>
                     </td>
                 </tr>
 
                 <tr>
                     <th>是否公开：</th>
                     <td>
-                        <label><input type="radio" name="is_public" value="1">公开</label>
-                        <label><input type="radio" name="is_public" value="0">私密</label>
+                        <label><input type="radio" name="is_public" value="1" @if($field->is_public==1)checked="checked" @endif>公开</label>
+                        <label><input type="radio" name="is_public" value="0" @if($field->is_public==1)checked="checked" @endif>私密</label>
                     </td>
                 </tr>
 
                 <tr>
                     <th>评论：</th>
                     <td>
-                        <label><input type="radio" name="is_comment" value="1">允许</label>
-                        <label><input type="radio" name="is_comment" value="0">不允许</label>
+                        <label><input type="radio" name="is_comment" value="1" @if($field->is_comment==1)checked="checked" @endif>允许</label>
+                        <label><input type="radio" name="is_comment" value="0" @if($field->is_comment==0)checked="checked" @endif>不允许</label>
                     </td>
                 </tr>
                 <tr>
                     <th>是否置顶：</th>
                     <td>
-                        <label><input type="radio" name="is_top" value="1">是</label>
-                        <label><input type="radio" name="is_top" value="0">否</label>
+                        <label><input type="radio" name="is_top" value="1" @if($field->is_top==1)checked="checked" @endif>是</label>
+                        <label><input type="radio" name="is_top" value="0" @if($field->is_top==0)checked="checked" @endif>否</label>
                     </td>
                 </tr>
                 <tr>

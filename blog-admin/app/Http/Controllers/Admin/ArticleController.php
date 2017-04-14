@@ -15,7 +15,7 @@ class ArticleController extends CommonController
      */
     public function index()
     {
-        $data = Article::orderBy('id')->paginate(1);
+        $data = Article::orderBy('id')->paginate(15);
 
         $status = ['0'=>'未审核','1'=>'审核中','审核通过'];
 
@@ -57,6 +57,9 @@ class ArticleController extends CommonController
             return back()->withErrors($validate);
 
         }
+
+        $input['auther'] = session('user')->id;
+        $input['status'] = 0;
         $add = Article::create($input);
 
         if (!$add) {
@@ -76,13 +79,13 @@ class ArticleController extends CommonController
     {
         $field = Article::find($id);//前端无需遍历
 
-        $data = [];//Article::where('pid', 0)->get();//前端通过遍历
+        $data = Category::getCategory();
         return view('admin.article.edit', compact('field', 'data'));
     }
 
     /**
      * PUT|PATCH
-     * admin/cate/{cate}
+     * admin/article/{cate}
      * 更新
      * 前端： <input type="hidden" name="_method" value="put">
      */
@@ -90,15 +93,38 @@ class ArticleController extends CommonController
     {
         $input = $request->except(['_method', '_token']);
 
-        $result = Category::where('id', $id)->update($input);
+        $result = Article::where('id', $id)->update($input);
 
         if ($result===false) {
             return back()->with('msg', 'update error');
         }
 
-        return redirect('admin/cate');
+        return redirect('admin/article');
 
 
+    }
+
+
+    /**
+     * DELETE
+     * admin/article/{cate}
+     * 删除
+     */
+    public function destroy(Request $request, $id)
+    {
+
+        $result = Article::where('id',$id)->delete();
+
+        if(!$result){
+            return [
+                'code'=>1,
+                'msg'=>'delete error'
+            ];
+        }
+        return [
+            'code'=>0,
+            'msg'=>'delete success'
+        ];
     }
 
 
