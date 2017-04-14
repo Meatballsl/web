@@ -67,4 +67,40 @@ class ArticleController extends CommonController
     }
 
 
+    /**
+     * admin/article/{cate}/edit
+     * GET|HEAD
+     * 修改
+     */
+    public function edit(Request $request, $id)
+    {
+        $field = Article::find($id);//前端无需遍历
+
+        $data = [];//Article::where('pid', 0)->get();//前端通过遍历
+        return view('admin.article.edit', compact('field', 'data'));
+    }
+
+    /**
+     * PUT|PATCH
+     * admin/cate/{cate}
+     * 更新
+     * 前端： <input type="hidden" name="_method" value="put">
+     */
+    public function update(Request $request, $id)
+    {
+        $input = $request->except(['_method', '_token']);
+
+        $result = Category::where('id', $id)->update($input);
+
+        if ($result===false) {
+            return back()->with('msg', 'update error');
+        }
+
+        return redirect('admin/cate');
+
+
+    }
+
+
+
 }
