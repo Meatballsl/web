@@ -30,6 +30,10 @@ Route::group(['middleware'=>['web','admin.login'],'prefix'=>'admin','namespace'=
 });
 Route::get('/index','Home\IndexController@index');
 Route::get('/cate','Home\IndexController@category');
+Route::get('/auther','Home\IndexController@auther');
+Route::get('/classify','Home\IndexController@classify');
+Route::get('/article','Home\IndexController@article');
+Route::get('/blog','Home\IndexController@blog');//要先登录哦
 
 
 

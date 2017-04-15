@@ -1,24 +1,12 @@
-<!DOCTYPE html>
-<html dir="ltr" lang="en-US">
+@extends('layouts.home')
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width; initial-scale=1.0">
-    <title>Apollo - Blog Single</title>
-    <!-- Stylesheet -->
-    <link rel="stylesheet" type="text/css" media="all" href="{$Think.const.STATIC_URL}css/style.css" />
-    <link rel="stylesheet" type="text/css" media="all" href="{$Think.const.STATIC_URL}css/responsive.css" />
-    <!-- Google Font -->
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
-    <!--[if lt IE 9]>
-    <script src="{$Think.const.STATIC_URL}js/html5.js" type="text/javascript"></script>
-    <![endif]-->
-    <script type="text/javascript" src="{$Think.const.STATIC_URL}js/jquery-1.7.2.min.js"></script>
-</head>
+@section('body_name')
 <body id="body" class="blog-single">
+@endsection
 
+@section('body_part')
 <!-- #site-container -->
-<include file="./Public/head.html"/>
+
     <!-- /#header -->
 
 
@@ -52,7 +40,7 @@
                     <header class="entry-header">
 
                         <div class="entry-thumb"> <a href="blog-single.html">
-                            <img src="{$Think.const.STATIC_URL}2012/04/dsc00033bb-670x350.jpg" alt=""  />            </a> </div>
+                            <img src="{{asset('resources/views/home/style/2012/04/dsc00033bb-670x350.jpg')}}" alt=""  />            </a> </div>
                     </header>
                     <h1 class="entry-title">
                         The Martians had been repulsed        </h1>
@@ -175,7 +163,7 @@
     <!-- /#primary -->
 
     <!-- #footer -->
-<include file="./Public/foot.html"/>
+
     <!-- /#footer-bottom -->
 
 <!-- /#container -->
@@ -185,8 +173,4 @@
     for ( i=0; i<dropdowns.length; i++ )
         dropdowns[i].onchange = function(){ if ( this.value != '' ) window.location.href = this.value; }
 </script>
-<script type="text/javascript" src="{$Think.const.STATIC_URL}js/functions.js"></script>
-<script type="text/javascript" src="{$Think.const.STATIC_URL}js/jquery.flexslider-min.js"></script>
-
-</body>
-</html>
+@endsection

@@ -1,24 +1,10 @@
-<!DOCTYPE html>
-<html dir="ltr" lang="en-US">
+@extends('layouts.home')
 
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width; initial-scale=1.0">
-<title>Apollo - Blog</title>
-<!-- Stylesheet -->
-<link rel="stylesheet" type="text/css" media="all" href="{$Think.const.STATIC_URL}css/style.css" />
-<link rel="stylesheet" type="text/css" media="all" href="{$Think.const.STATIC_URL}css/responsive.css" />
-<!-- Google Font -->
-<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
-<!--[if lt IE 9]>
-<script src="{$Think.const.STATIC_URL}js/html5.js" type="text/javascript"></script>
-<![endif]-->
-<script type="text/javascript" src="{$Think.const.STATIC_URL}js/jquery-1.7.2.min.js"></script>
-</head>
+@section('body_name')
 <body id="body" class="blog">
+@endsection
 
-<include file="./Public/head.html"/>
-  <!-- /#header --> 
+@section('body_part')
   
   <!-- #page-header -->
   
@@ -274,10 +260,10 @@
   <!-- /#primary --> 
   
   <!-- #footer -->
-<include file="./Public/foot.html"/>
+
   <!-- /#footer-bottom --> 
   
-</div>
+
 <!-- /#container --> 
 <script>
 		var getElementsByClassName=function(a,b,c){if(document.getElementsByClassName){getElementsByClassName=function(a,b,c){c=c||document;var d=c.getElementsByClassName(a),e=b?new RegExp("\\b"+b+"\\b","i"):null,f=[],g;for(var h=0,i=d.length;h<i;h+=1){g=d[h];if(!e||e.test(g.nodeName)){f.push(g)}}return f}}else if(document.evaluate){getElementsByClassName=function(a,b,c){b=b||"*";c=c||document;var d=a.split(" "),e="",f="http://www.w3.org/1999/xhtml",g=document.documentElement.namespaceURI===f?f:null,h=[],i,j;for(var k=0,l=d.length;k<l;k+=1){e+="[contains(concat(' ', @class, ' '), ' "+d[k]+" ')]"}try{i=document.evaluate(".//"+b+e,c,g,0,null)}catch(m){i=document.evaluate(".//"+b+e,c,null,0,null)}while(j=i.iterateNext()){h.push(j)}return h}}else{getElementsByClassName=function(a,b,c){b=b||"*";c=c||document;var d=a.split(" "),e=[],f=b==="*"&&c.all?c.all:c.getElementsByTagName(b),g,h=[],i;for(var j=0,k=d.length;j<k;j+=1){e.push(new RegExp("(^|\\s)"+d[j]+"(\\s|$)"))}for(var l=0,m=f.length;l<m;l+=1){g=f[l];i=false;for(var n=0,o=e.length;n<o;n+=1){i=e[n].test(g.className);if(!i){break}}if(i){h.push(g)}}return h}}return getElementsByClassName(a,b,c)},
@@ -288,6 +274,4 @@
 <script type="text/javascript" src="{$Think.const.STATIC_URL}js/functions.js"></script>
 <script type="text/javascript" src="{$Think.const.STATIC_URL}js/jquery.flexslider-min.js"></script>
 <script type="text/javascript" src="{$Think.const.STATIC_URL}js/jquery.jplayer.min.js"></script>
-
-</body>
-</html>
+@endsection

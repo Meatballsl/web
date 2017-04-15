@@ -45,29 +45,28 @@
     <header id="header" class="clearfix">
         <!-- #logo -->
         <div id="logo">
-            <h1><a href="index.html"> <img alt="Apollo" src="{$Think.const.STATIC_URL}/2012/04/apollo-logo.png"></a>
+            <h1><a href="index.html"> <img alt="Apollo" src="{{asset('resources/views/home/style/2012/04/apollo-logo.png')}}"></a>
             </h1>
         </div>
         <!-- /#logo -->
         <!-- #primary-nav -->
         <nav id="primary-nav" role="navigation" class="clearfix">
             <ul id="menu-primary-nav" class="nav sf-menu clearfix">
-                <li
-                <if condition="$choose eq index"> class="current-menu-item"</if>
-                ><a href="index.html">首页</a></li>
+                <li @if($check=='index')class="current-menu-item" @endif
+                ><a href="{{url('/index')}}">首页</a></li>
 
-                <li
-                <if condition="$choose eq classify"> class="current-menu-item"</if>
-                ><a href="{:U('home/Index/classify')}">分类专栏</a></li>
-                <li
-                <if condition="$choose eq auther"> class="current-menu-item"</if>
-                ><a href="{:U('home/Index/auther')}">作家专栏</a></li>
-                <li
-                <if condition="$choose eq chat"> class="current-menu-item"</if>
-                ><a href="discuss.html">在线聊天室</a></li>
-                <li
-                <if condition="$choose eq blog"> class="current-menu-item"</if>
-                ><a href="{:U('home/Index/blog')}">我的博客</a></li>
+                <li @if($check=='cate')class="current-menu-item" @endif
+                ><a href="{{url('/cate')}}">分类专栏</a></li>
+
+                <li @if($check=='auther')class="current-menu-item" @endif
+                ><a href="{{url('/auther')}}">作家专栏</a></li>
+
+                <li @if($check=='index')class="current-menu-item" @endif
+                ><a href="#">在线聊天室</a></li>
+
+                <li @if($check=='blog')class="current-menu-item" @endif
+                ><a href="{{url('/blog')}}">我的博客</a></li>
+
             </ul>
 
         </nav>
@@ -113,12 +112,12 @@
     <footer id="footer-bottom" class="clearfix">
         <nav id="footer-nav">
             <ul class="nav-footer">
-                <li class="current-menu-item"><a href="index.html">首页</a></li>
+                <li class="current-menu-item"><a href="{{url('/index')}}">首页</a></li>
 
-                <li><a href="{:U('home/Index/classify')}">分类专栏</a></li>
-                <li><a href="{:U('home/Index/auther')}">作家专栏</a></li>
+                <li><a href="{{url('/cate')}}">分类专栏</a></li>
+                <li><a href="{{url('/auther')}}">作家专栏</a></li>
                 <li><a href="discuss.html">在线聊天室</a></li>
-                <li><a href="{:U('home/Index/blog')}">我的博客</a></li>
+                <li><a href="{{url('/blog')}}">我的博客</a></li>
             </ul>
         </nav>
         <div id="copyright">&copy; Copyright &copy; 2013.Company name All rights reserved.</div>
@@ -128,5 +127,6 @@
 <script type="text/javascript" src="{{asset('resources/views/home/style/js/functions.js')}}"></script>
 <script type="text/javascript" src="{{asset('resources/views/home/style/js/jquery.flexslider-min.js')}}"></script>
 <script type="text/javascript" src="{{asset('resources/views/home/style/js/jquery.isotope.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('resources/views/home/style/js/jquery.jplayer.min.js')}}"></script>
 </body>
 </html>
