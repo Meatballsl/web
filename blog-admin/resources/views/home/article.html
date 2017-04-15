@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width; initial-scale=1.0">
+    <title>Apollo - Blog Single</title>
+    <!-- Stylesheet -->
+    <link rel="stylesheet" type="text/css" media="all" href="{$Think.const.STATIC_URL}css/style.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="{$Think.const.STATIC_URL}css/responsive.css" />
+    <!-- Google Font -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+    <!--[if lt IE 9]>
+    <script src="{$Think.const.STATIC_URL}js/html5.js" type="text/javascript"></script>
+    <![endif]-->
+    <script type="text/javascript" src="{$Think.const.STATIC_URL}js/jquery-1.7.2.min.js"></script>
+</head>
+<body id="body" class="blog-single">
+
+<!-- #site-container -->
+<include file="./Public/head.html"/>
+    <!-- /#header -->
+
+
+    <!-- #page-header -->
+    <div id="page-header">
+        <h1>艺术画展分享</h1>
+        <p>They were described as “vast spiderlike machines, nearly a hundred feet high, capable of the speed of an express train, and able to shoot out a beam of intense heat.” Masked batteries, chiefly of field guns, had been planted in the country about Horsell Common, and especially between the Woking district and London. Five of the machines had been seen moving towards the Thames, and one, by a happy chance, had been destroyed. In the other cases the </p>
+    </div>
+    <!-- /#page-header -->
+
+    <!-- #primary -->
+    <div id="primary" class="clearfix">
+        <!-- #content -->
+        <section id="content" role="main">
+            <article class="post format-standard hentry clearfix">
+                <div class="entry-meta ">
+
+                    <div class="post-format">
+                        <span class="icon"></span>
+                    </div>
+
+
+                    <ul>
+                        <li><span>On</span> <time datetime="2012-04-18">April 18, 2012</time></li>
+                        <li><span>By</span> <a href="#" title="Posts by Chris Mooney" rel="author">Chris Mooney</a></li>
+                        <li><span>In</span> <a href="#">Quick Thoughts</a></li><li><span>With</span> <a href="blog-single.html#respond" title="Comment on The Martians had been repulsed">No Comments</a></li><li></li></ul>
+
+
+                </div>
+                <div class="entry-wrap">
+                    <header class="entry-header">
+
+                        <div class="entry-thumb"> <a href="blog-single.html">
+                            <img src="{$Think.const.STATIC_URL}2012/04/dsc00033bb-670x350.jpg" alt=""  />            </a> </div>
+                    </header>
+                    <h1 class="entry-title">
+                        The Martians had been repulsed        </h1>
+                    <div class="entry-content">
+                        <p>They were described as &#8220;vast spiderlike machines, nearly a hundred feet high, capable of the speed of an express train, and able to shoot out a beam of intense heat.&#8221; Masked batteries, chiefly of field guns, had been planted in the country about Horsell Common, and especially between the Woking district and London. Five of the machines had been seen moving towards the Thames, and one, by a happy chance, had been destroyed. In the other cases the shells had missed, and the batteries had been at once annihilated by the Heat-Rays. Heavy losses of soldiers were mentioned, but the tone of the dispatch was optimistic.</p>
+                        <p>The Martians had been repulsed; they were not invulnerable. They had retreated to their triangle of cylinders again, in the circle about Woking. Signallers with heliographs were pushing forward upon them from all sides. Guns were in rapid transit from Windsor, Portsmouth, Aldershot, Woolwich&#8211;even from the north; among others, long wire-guns of ninety-five tons from Woolwich. Altogether one hundred and sixteen were in position or being hastily placed, chiefly covering London. Never before in England had there been such a vast or rapid concentration of military material.</p>
+                        <h2>Heading One</h2>
+                        <p>Any further cylinders that fell, it was hoped, could be destroyed at once by high explosives, which were being rapidly manufactured and distributed. No doubt, ran the report, the situation was of the strangest and gravest description, but the public was exhorted to avoid and discourage panic. No doubt the Martians were strange and terrible in the extreme, but at the outside there could not be more than twenty of them against our millions.</p>
+                        <p>The authorities had reason to suppose, from the size of the cylinders, that at the outside there could not be more than five in each cylinder&#8211;fifteen altogether. And one at least was disposed of&#8211;perhaps more. The public would be fairly warned of the approach of danger, and elaborate measures were being taken for the protection of the people in the threatened southwestern suburbs. And so, with reiterated assurances of the safety of London and the ability of the authorities to cope with the difficulty, this quasi-proclamation closed.</p>
+                        <h3>Heading Two</h3>
+                        <p>This was printed in enormous type on paper so fresh that it was still wet, and there had been no time to add a word of comment. It was curious, my brother said, to see how ruthlessly the usual contents of the paper had been hacked and taken out to give this place.</p>
+                    </div>
+                </div>
+                <span class="div-end"></span> </article>
+
+
+
+
+
+
+
+            <section id="respond" class="clearfix">
+
+
+                <h3 id="respond-title" class="deco"><span class="outer"><span class="inner">评论区</span></span></h3>
+
+                <article class="post format-standard hentry clearfix">
+
+                    <div class="entry-meta ">
+                        <div class="post-format"> <span class="icon"></span> </div>
+                        <ul>
+                            <li><span>On</span>
+                                <time datetime="2012-04-18">April 18, 2012</time>
+                            </li>
+                            <li><span>By</span> <a href="#" title="Posts by Chris Mooney" rel="author">Chris Mooney</a></li>
+                            <li><span>In</span> <a href="#">thinkphp 分布式数据库 详解 </a></li>
+                            <li><span>With</span> <a href="blog-single.html#respond" title="Comment on The Martians had been repulsed">No Comments</a></li>
+                        </ul>
+                    </div>
+                    <div class="entry-wrap">
+
+                        <div class="entry-content">
+                            <p>1.分布式数据库是什么：
+                                　　tp的分布式数据库主要是通过该配置：
+                                　　'DB_DEPLOY_TYPE'        =>  1,// 数据库部署方式:0 集中式(单一服务器),1 分布式(主从服务器)
+                            </p>
+                            <p>2.主从服务器的读写分离是什么：
+                                　主从数据库即为一个主数据库会有对应n个从数据库，而从数据库只能有一个对应的从数据库。主从数据库中写的操作需要使用主数据库，而读操作使用从数据库。主数据库与从数据库始终保持数据一致性。其中保持数据库一致的原理即为当主数据库数据发生变化时，会将操作写入到主数据库日志中，而从数据库会不停的读取主数据库的日志保存到自己的日志系统中，然后进行执行，从而保持了主从数据库一致。
+                            </p>
+                            <p>３.详解</p>
+                        </div>
+
+                    </div>
+                </article>
+                <article class="post format-standard hentry clearfix">
+
+                    <div class="entry-meta ">
+                        <div class="post-format"> <span class="icon"></span> </div>
+                        <ul>
+                            <li><span>On</span>
+                                <time datetime="2012-04-18">April 18, 2012</time>
+                            </li>
+                            <li><span>By</span> <a href="#" title="Posts by Chris Mooney" rel="author">Chris Mooney</a></li>
+                            <li><span>In</span> <a href="#">thinkphp 分布式数据库 详解 </a></li>
+                            <li><span>With</span> <a href="blog-single.html#respond" title="Comment on The Martians had been repulsed">No Comments</a></li>
+                        </ul>
+                    </div>
+                    <div class="entry-wrap">
+
+                        <div class="entry-content">
+                            <p>1.分布式数据库是什么：
+                                　　tp的分布式数据库主要是通过该配置：
+                                　　'DB_DEPLOY_TYPE'        =>  1,// 数据库部署方式:0 集中式(单一服务器),1 分布式(主从服务器)
+                            </p>
+                            <p>2.主从服务器的读写分离是什么：
+                                　主从数据库即为一个主数据库会有对应n个从数据库，而从数据库只能有一个对应的从数据库。主从数据库中写的操作需要使用主数据库，而读操作使用从数据库。主数据库与从数据库始终保持数据一致性。其中保持数据库一致的原理即为当主数据库数据发生变化时，会将操作写入到主数据库日志中，而从数据库会不停的读取主数据库的日志保存到自己的日志系统中，然后进行执行，从而保持了主从数据库一致。
+                            </p>
+                            <p>３.详解</p>
+                        </div>
+
+                    </div>
+                </article>
+
+
+
+                <form action="#" method="post" id="commentform">
+
+
+
+                    <div class="field-row">
+                        <textarea name="comment" id="comment" rows="6" tabindex="4"></textarea>
+                    </div>
+
+                    <input class="btn" type="submit" value="提交评论" id="submit" name="submit">
+
+                </form>
+
+            </section>
+        </section>
+        <!-- #content -->
+        <!-- #sidebar -->
+        <aside id="sidebar" role="complementary">
+            <div class="widget-first widget widget_search clearfix"><form role="search" method="get" id="searchform" action="#">
+                <input type="text" value="Search..." name="s" id="s" onblur="if (this.value == '')  {this.value = 'Search...';}" onfocus="if (this.value == 'Search...')
+{this.value = '';}" />
+            </form></div>
+            <div class="widget-last widget widget_categories clearfix">
+                <h4>栏目分类</h4>
+                <ul>
+                    <li><a href="#" title="View all posts filed under Art">领域技能</a> </li>
+                    <li><a href="#" title="View all posts filed under Audio">时尚达人</a> </li>
+                    <li><a href="#" title="View all posts filed under Link">心情随笔</a> </li>
+                    <li><a href="#" title="View all posts filed under Quick Thoughts">饕餮美食</a> </li>
+                    <li><a href="#" title="View all posts filed under Quotes">玩乐趣享</a> </li>
+                    <li><a href="#" title="View all posts filed under Uncategorized">其它</a> </li>
+                </ul>
+            </div>
+        </aside>
+    </div>
+    <!-- /#primary -->
+
+    <!-- #footer -->
+<include file="./Public/foot.html"/>
+    <!-- /#footer-bottom -->
+
+<!-- /#container -->
+<script>
+    var getElementsByClassName=function(a,b,c){if(document.getElementsByClassName){getElementsByClassName=function(a,b,c){c=c||document;var d=c.getElementsByClassName(a),e=b?new RegExp("\\b"+b+"\\b","i"):null,f=[],g;for(var h=0,i=d.length;h<i;h+=1){g=d[h];if(!e||e.test(g.nodeName)){f.push(g)}}return f}}else if(document.evaluate){getElementsByClassName=function(a,b,c){b=b||"*";c=c||document;var d=a.split(" "),e="",f="http://www.w3.org/1999/xhtml",g=document.documentElement.namespaceURI===f?f:null,h=[],i,j;for(var k=0,l=d.length;k<l;k+=1){e+="[contains(concat(' ', @class, ' '), ' "+d[k]+" ')]"}try{i=document.evaluate(".//"+b+e,c,g,0,null)}catch(m){i=document.evaluate(".//"+b+e,c,null,0,null)}while(j=i.iterateNext()){h.push(j)}return h}}else{getElementsByClassName=function(a,b,c){b=b||"*";c=c||document;var d=a.split(" "),e=[],f=b==="*"&&c.all?c.all:c.getElementsByTagName(b),g,h=[],i;for(var j=0,k=d.length;j<k;j+=1){e.push(new RegExp("(^|\\s)"+d[j]+"(\\s|$)"))}for(var l=0,m=f.length;l<m;l+=1){g=f[l];i=false;for(var n=0,o=e.length;n<o;n+=1){i=e[n].test(g.className);if(!i){break}}if(i){h.push(g)}}return h}}return getElementsByClassName(a,b,c)},
+            dropdowns = getElementsByClassName( 'dropdown-menu' );
+    for ( i=0; i<dropdowns.length; i++ )
+        dropdowns[i].onchange = function(){ if ( this.value != '' ) window.location.href = this.value; }
+</script>
+<script type="text/javascript" src="{$Think.const.STATIC_URL}js/functions.js"></script>
+<script type="text/javascript" src="{$Think.const.STATIC_URL}js/jquery.flexslider-min.js"></script>
+
+</body>
+</html>

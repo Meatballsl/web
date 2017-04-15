@@ -27,7 +27,11 @@ Route::group(['middleware'=>['web','admin.login'],'prefix'=>'admin','namespace'=
     Route::any('test','CategoryController@test');
     Route::resource('article', 'ArticleController');
     Route::post('upload', 'CommonController@upload');
-
 });
+Route::get('/index','Home\IndexController@index');
+Route::get('/cate','Home\IndexController@category');
+
+
+
 
 
