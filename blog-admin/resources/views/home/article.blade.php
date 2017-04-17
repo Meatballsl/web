@@ -12,8 +12,8 @@
 
     <!-- #page-header -->
     <div id="page-header">
-        <h1>艺术画展分享</h1>
-        <p>They were described as “vast spiderlike machines, nearly a hundred feet high, capable of the speed of an express train, and able to shoot out a beam of intense heat.” Masked batteries, chiefly of field guns, had been planted in the country about Horsell Common, and especially between the Woking district and London. Five of the machines had been seen moving towards the Thames, and one, by a happy chance, had been destroyed. In the other cases the </p>
+        <h1>{{$article['title']}}</h1>
+        <p>{{$article['summary']}}
     </div>
     <!-- /#page-header -->
 
@@ -30,29 +30,22 @@
 
 
                     <ul>
-                        <li><span>On</span> <time datetime="2012-04-18">April 18, 2012</time></li>
-                        <li><span>By</span> <a href="#" title="Posts by Chris Mooney" rel="author">Chris Mooney</a></li>
-                        <li><span>In</span> <a href="#">Quick Thoughts</a></li><li><span>With</span> <a href="blog-single.html#respond" title="Comment on The Martians had been repulsed">No Comments</a></li><li></li></ul>
+                        <li><span>On</span> <time datetime="{{$article['created_at']}}">{{$article['created_at']}}</time></li>
+                        <li><span>By</span> <a href="#" title="Posts by Chris Mooney" rel="author">{{$article['auther']}}</a></li>
+                        <li><span>In</span> <a href="#">Quick Thoughts</a></li><li><span>With</span> <a href="#" title="Comment on The Martians had been repulsed">No Comments</a></li><li></li></ul>
 
 
                 </div>
                 <div class="entry-wrap">
                     <header class="entry-header">
 
-                        <div class="entry-thumb"> <a href="blog-single.html">
-                            <img src="{{asset('resources/views/home/style/2012/04/dsc00033bb-670x350.jpg')}}" alt=""  />            </a> </div>
+                        <div class="entry-thumb">
+                            <img src="{{$article['thumb']}}" alt=""  />
+                        </div>
+
                     </header>
-                    <h1 class="entry-title">
-                        The Martians had been repulsed        </h1>
-                    <div class="entry-content">
-                        <p>They were described as &#8220;vast spiderlike machines, nearly a hundred feet high, capable of the speed of an express train, and able to shoot out a beam of intense heat.&#8221; Masked batteries, chiefly of field guns, had been planted in the country about Horsell Common, and especially between the Woking district and London. Five of the machines had been seen moving towards the Thames, and one, by a happy chance, had been destroyed. In the other cases the shells had missed, and the batteries had been at once annihilated by the Heat-Rays. Heavy losses of soldiers were mentioned, but the tone of the dispatch was optimistic.</p>
-                        <p>The Martians had been repulsed; they were not invulnerable. They had retreated to their triangle of cylinders again, in the circle about Woking. Signallers with heliographs were pushing forward upon them from all sides. Guns were in rapid transit from Windsor, Portsmouth, Aldershot, Woolwich&#8211;even from the north; among others, long wire-guns of ninety-five tons from Woolwich. Altogether one hundred and sixteen were in position or being hastily placed, chiefly covering London. Never before in England had there been such a vast or rapid concentration of military material.</p>
-                        <h2>Heading One</h2>
-                        <p>Any further cylinders that fell, it was hoped, could be destroyed at once by high explosives, which were being rapidly manufactured and distributed. No doubt, ran the report, the situation was of the strangest and gravest description, but the public was exhorted to avoid and discourage panic. No doubt the Martians were strange and terrible in the extreme, but at the outside there could not be more than twenty of them against our millions.</p>
-                        <p>The authorities had reason to suppose, from the size of the cylinders, that at the outside there could not be more than five in each cylinder&#8211;fifteen altogether. And one at least was disposed of&#8211;perhaps more. The public would be fairly warned of the approach of danger, and elaborate measures were being taken for the protection of the people in the threatened southwestern suburbs. And so, with reiterated assurances of the safety of London and the ability of the authorities to cope with the difficulty, this quasi-proclamation closed.</p>
-                        <h3>Heading Two</h3>
-                        <p>This was printed in enormous type on paper so fresh that it was still wet, and there had been no time to add a word of comment. It was curious, my brother said, to see how ruthlessly the usual contents of the paper had been hacked and taken out to give this place.</p>
-                    </div>
+
+                    {!! $article['content'] !!}
                 </div>
                 <span class="div-end"></span> </article>
 
@@ -173,4 +166,10 @@
     for ( i=0; i<dropdowns.length; i++ )
         dropdowns[i].onchange = function(){ if ( this.value != '' ) window.location.href = this.value; }
 </script>
+<style>
+    .result_content ul li span {
+        font-size: 15px;
+        padding: 6px 12px;
+    }
+</style>
 @endsection
