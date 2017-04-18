@@ -54,7 +54,7 @@
                 <tr>
                     <th><i class="require">*</i>文章标题：</th>
                     <td>
-                        <input type="text" name="title" value="{{$field->auther}}" class="lg">
+                        <input type="text" name="title" value="{{$field->title}}" class="lg">
                     </td>
                 </tr>
                 <tr>
@@ -93,7 +93,7 @@
                     <th>是否公开：</th>
                     <td>
                         <label><input type="radio" name="is_public" value="1" @if($field->is_public==1)checked="checked" @endif>公开</label>
-                        <label><input type="radio" name="is_public" value="0" @if($field->is_public==1)checked="checked" @endif>私密</label>
+                        <label><input type="radio" name="is_public" value="0" @if($field->is_public==0)checked="checked" @endif>私密</label>
                     </td>
                 </tr>
 

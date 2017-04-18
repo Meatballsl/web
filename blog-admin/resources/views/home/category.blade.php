@@ -25,18 +25,16 @@
             <div class="entry-thumb">
 
                 <img height="365" width="580" alt=""
-                     src="{{asset('resources/views/home/style/2012/04/520385224_9a679aa1fb_b-580x365.jpg')}}"/>
+                     src="/{{$cateDetail['show']}}"/>
 
             </div>
 
             <div class="entry-wrap">
 
-                <h1 class="entry-title"><a href="{:U('home/Index/classify_detail')}">心情随笔</a></h1>
+                <h1 class="entry-title"><a href="#">{{$cateDetail['name']}}</a></h1>
                 <span class="div"></span>
                 <div class="entry-content">
-                    <p>心情日志随笔,抒写心情故事,记录定格心情!</p>
-                    <p>随笔写下你的心情,让别人也懂你的世界!</p>
-                    <p>心情随笔栏目收集了心情随笔日志;心情有时好,有事坏,记录下来与别人分享,与以后的自己分享。</p>
+                    {{$cateDetail['summary']}}
                 </div>
 
             </div>
@@ -52,74 +50,20 @@
                 </span>
             </h3>
             <ul class="clearfix">
-
+                @foreach($cateList as $key=>$val)
                 <li>
                     <div class="entry-thumb">
-                        <a class="overlay" href="portfolio-single.html">
-                            <img src="{{asset('resources/views/home/style/2012/04/3540114961_c009ce7d9e_b-320x320.jpg')}}" alt=""/>
+                        <a class="overlay" href="{{url('/classify/')}}/{{$val['id']}}">
+                            <img src="/{{$val['thumb']}}" alt=""/>
                             <div class="caption"><span>查看</span></div>
                         </a>
                     </div>
-                    <h4 class="entry-title"><a rel="bookmark" href="portfolio-single.html">领域技能</a></h4>
+                    <h4 class="entry-title"><a rel="bookmark" href="portfolio-single.html">{{$val['name']}}</a></h4>
 
                 </li>
+                    @endforeach
 
 
-                <li>
-                    <div class="entry-thumb">
-                        <a class="overlay" href="portfolio-single.html">
-                            <img src="{{asset('resources/views/home/style/2012/04/2937630810_7513f565b8_o-320x320.jpg')}}" alt=""/>
-                            <div class="caption"><span>查看</span></div>
-                        </a>
-                    </div>
-                    <h4 class="entry-title"><a rel="bookmark" href="portfolio-single.html">时尚达人</a></h4>
-                </li>
-
-
-                <li>
-
-                    <div class="entry-thumb">
-                        <a class="overlay" href="portfolio-single.html">
-                            <img src="{{asset('resources/views/home/style/2012/04/520385224_9a679aa1fb_b-320x320.jpg')}}" alt=""/>
-                            <div class="caption"><span>查看</span></div>
-                        </a>
-                    </div>
-                    <h4 class="entry-title"><a rel="bookmark" href="portfolio-single.html">心情随笔</a></h4>
-
-                </li>
-
-                <li>
-
-                    <div class="entry-thumb">
-                        <a class="overlay" href="portfolio-single.html">
-                            <img src="{{asset('resources/views/home/style/2012/04/2790823073_88b6f8b2b0_o-320x320.jpg')}}" alt=""/>
-                            <div class="caption"><span>查看</span></div>
-                        </a>
-                    </div>
-                    <h4 class="entry-title"><a rel="bookmark" href="portfolio-single.html">饕餮美食</a></h4>
-
-
-                </li>
-                <li>
-                    <div class="entry-thumb">
-                        <a class="overlay" href="portfolio-single.html">
-                            <img src="{{asset('resources/views/home/style/2012/04/2568010272_08b147a4bb_o-320x320.jpg')}}" alt=""/>
-                            <div class="caption"><span>查看</span></div>
-                        </a>
-                    </div>
-                    <h4 class="entry-title"><a rel="bookmark" href="portfolio-single.html">玩乐趣享</a></h4>
-
-                </li>
-
-                <li>
-                    <div class="entry-thumb">
-                        <a class="overlay" href="portfolio-single.html">
-                            <img src="{{asset('resources/views/home/style/2012/04/3306770768_042408e4a6_o-320x320.png')}}" alt=""/>
-                            <div class="caption"><span>查看</span></div>
-                        </a>
-                    </div>
-                    <h4 class="entry-title"><a rel="bookmark" href="portfolio-single.html">其它</a></h4>
-                </li>
 
 
             </ul>

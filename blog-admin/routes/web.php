@@ -29,9 +29,9 @@ Route::group(['middleware'=>['web','admin.login'],'prefix'=>'admin','namespace'=
     Route::post('upload', 'CommonController@upload');
 });
 Route::get('/index','Home\IndexController@index');
-Route::get('/cate','Home\IndexController@category');
+Route::get('/cate/{id}','Home\IndexController@category');
 Route::get('/auther','Home\IndexController@auther');
-Route::get('/classify','Home\IndexController@classify');
+Route::get('/classify/{id}','Home\IndexController@classify');
 Route::get('/article/{id}','Home\IndexController@article');
 Route::get('/blog','Home\IndexController@blog');//要先登录哦
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Home;
 
 use App\Models\Article;
 
+use App\Models\Category;
 use App\Models\Users;
 use Illuminate\Http\Request;
 
@@ -12,14 +13,17 @@ class IndexController extends CommonController
     public function index()
     {
         $check = 'index';
-        return view('home.index',compact('check'));
+        $cate = Category::where('pid',0)->orderby('id')->get();
+        return view('home.index',compact('check','cate'));
 
     }
 
-    public function category()
+    public function category(Request $request,$id)
     {
+        $cateDetail = Category::where('id',$id)->first();
+        $cateList = Category::where('pid',$id)->get();
         $check = 'cate';
-        return view('home.category',compact('check'));
+        return view('home.category',compact('check','cateList','cateDetail'));
 
     }
 
@@ -30,20 +34,22 @@ class IndexController extends CommonController
 
     }
 
-    public function classify()
+    public function classify(Request $request,$id)
     {
-        $article = Article::where('status',2)->paginate(1);
+        $cateDetail = Category::where('id',$id)->first();
+        $article = Article::where(['status'=>2,'cid'=>$id])->paginate(15);
         $check = '';
-        $user = Users::all();
-        return view('home.classify',compact('check','article','user'));
+        $user = Users::getUserName();
+        return view('home.classify',compact('check','article','user','cateDetail'));
 
     }
 
     public function article(Request $request,$id)
     {
         $check ='';
+        $user = Users::getUserName();
         $article = Article::where('id',$id)->first();
-        return view('home.article',compact('check','article'));
+        return view('home.article',compact('check','article','user'));
 
     }
 

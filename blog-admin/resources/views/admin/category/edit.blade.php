@@ -65,16 +65,54 @@
                     </td>
                 </tr>
                 <tr>
+                    <th>概述：</th>
+                    <td>
+                        <textarea name="summary">{{$field->summary}}</textarea>
+                    </td>
+                </tr>
+                <tr>
                     <th><i class="require">*</i>排序：</th>
                     <td>
                         <input type="text" class="sm" name="order" value="{{$field->order}}">
                     </td>
                 </tr>
-                {{--<tr>--}}
-                {{--<th><i class="require">*</i>封面：</th>--}}
-                {{--<td><input type="file" name="thumb" value="{{$field->thumb}}"></td>--}}
-                {{--</tr>--}}
+                <tr>
+                    <th><i class="require">*</i>封面：</th>
+                    <td>
+                        <input type="text" name="thumb" class="lg" value="{{$field->thumb}}">
+                        <form>
+                            <div id="queue"></div>
+                            <input id="file_upload" name="file_upload" type="file" multiple="true">
+                            <script src="{{asset('resources/org/uploadify/jquery.uploadify.min.js')}}" type="text/javascript"></script>
+                        </form>
+                    </td>
+                </tr>
 
+                <tr>
+                    <th>缩略图</th>
+                    <td>
+                        <img src="/{{$field->thumb}}" id="small_thumb" style="max-width:100px" >
+                    </td>
+                </tr>
+
+                <tr>
+                    <th><i class="require">*</i>大图：</th>
+                    <td>
+                        <input type="text" name="show" class="lg" value="{{$field->show}}">
+                        <form>
+                            <div id="queue"></div>
+                            <input id="file_upload_big" name="file_upload_big" type="file" multiple="true">
+                            <script src="{{asset('resources/org/uploadify/jquery.uploadify.min.js')}}" type="text/javascript"></script>
+                        </form>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>缩略图</th>
+                    <td>
+                        <img src="/{{$field->show}}" id="small_thumb_big" style="max-width:100px" >
+                    </td>
+                </tr>
                 <tr>
                     <th></th>
                     <td>
@@ -86,4 +124,35 @@
             </table>
         </form>
     </div>
+    <script>
+        $(function () {
+            $('#file_upload').uploadify({
+                'formData': {
+                    '_token': '{{csrf_token()}}'
+                },
+                'buttonText' : '上传图片',
+                'swf': "{{asset('resources/org/uploadify/uploadify.swf')}}",
+                'uploader': "{{url('admin/upload')}}",
+                'onUploadSuccess' : function(file, data, response) {
+                    $('input[name=thumb]').val(data);
+                    $('#small_thumb').attr('src','/'+data);
+                }
+            });
+        });
+
+        $(function () {
+            $('#file_upload_big').uploadify({
+                'formData': {
+                    '_token': '{{csrf_token()}}'
+                },
+                'buttonText' : '上传图片',
+                'swf': "{{asset('resources/org/uploadify/uploadify.swf')}}",
+                'uploader': "{{url('admin/upload')}}",
+                'onUploadSuccess' : function(file, data, response) {
+                    $('input[name=show]').val(data);
+                    $('#small_thumb_big').attr('src','/'+data);
+                }
+            });
+        });
+    </script>
 @endsection

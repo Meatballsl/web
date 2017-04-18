@@ -78,10 +78,11 @@
                 <div id="home-portfolio" class="clearfix">
                     <h3 class="deco"><span class="outer"><span class="inner">精选分类</span></span></h3>
                     <ul class="clearfix">
+                        @foreach($cate as $key=>$val)
                         <li class="st_portfolio hentry">
                             <div class="entry-thumb">
-                                <a class="overlay" href="portfolio-single.html">
-                                    <img src="{{asset('resources/views/home/style/2012/04/3540114961_c009ce7d9e_b-320x320.jpg')}}"
+                                <a class="overlay" href="{{url('/cate/'.$val['id'])}}">
+                                    <img src="{{$val['thumb']}}"
                                          alt=""/>
                                     <div class="caption">
                                         <span>查看</span>
@@ -90,56 +91,15 @@
                             </div>
 
                             <h2 class="entry-title">
-                                <a rel="bookmark" href="portfolio-single.html">领域技能</a>
+                                <a rel="bookmark" href="portfolio-single.html">{{$val['name']}}</a>
                             </h2>
 
                             <div class="entry-content">
-                                <p>网罗各路技能</p>
+                                <p>{{$val['title']}}</p>
                             </div>
 
                         </li>
-                        <li class="st_portfolio hentry">
-                            <div class="entry-thumb"><a class="overlay" href="portfolio-single.html"> <img
-                                            src="{{asset('resources/views/home/style/2012/04/2937630810_7513f565b8_o-320x320.jpg')}}"
-                                            alt=""/>
-                                    <div class="caption"><span>查看</span></div>
-                                </a></div>
-                            <h2 class="entry-title"><a rel="bookmark" href="portfolio-single.html">时尚达人</a></h2>
-                            <div class="entry-content">
-                                <p>美出新台阶</p>
-                            </div>
-                        </li>
-                        <li class="st_portfolio hentry">
-                            <div class="entry-thumb"><a class="overlay" href="portfolio-single.html"> <img
-                                            src="{{asset('resources/views/home/style/2012/04/520385224_9a679aa1fb_b-320x320.jpg')}}"
-                                            alt=""/>
-                                    <div class="caption"><span>查看</span></div>
-                                </a></div>
-                            <h2 class="entry-title"><a rel="bookmark" href="portfolio-single.html">心情随笔</a></h2>
-                            <div class="entry-content">
-                                <p>记录点点滴滴</p>
-                            </div>
-                        </li>
-                        <li class="st_portfolio hentry last">
-                            <div class="entry-thumb">
-                                <a class="overlay" href="portfolio-single.html">
-                                    <img src="{{asset('resources/views/home/style/2012/04/2790823073_88b6f8b2b0_o-320x320.jpg')}}"
-                                         alt=""/>
-                                    <div class="caption">
-                                        <span>查看</span>
-                                    </div>
-                                </a>
-                            </div>
-
-                            <h2 class="entry-title">
-                                <a rel="bookmark" href="portfolio-single.html">饕餮美食</a>
-                            </h2>
-
-                            <div class="entry-content">
-                                <p>美食同分享</p>
-                            </div>
-
-                        </li>
+                      @endforeach
                     </ul>
                 </div>
                 <div id="home-blog" class="clearfix">

@@ -9,8 +9,8 @@
         <!-- #page-header -->
 
         <div id="page-header">
-            <h1>心情随笔</h1>
-            <p>心情日志随笔,抒写心情故事,记录定格心情!</p>
+            <h1>{{$cateDetail['name']}}</h1>
+            <p>{{$cateDetail['summary']}}</p>
         </div>
         <!-- /#page-header -->
 
@@ -72,17 +72,7 @@
 {this.value = '';}"/>
                     </form>
                 </div>
-                <div class="widget-last widget widget_categories clearfix">
-                    <h4>栏目分类</h4>
-                    <ul>
-                        <li><a href="#" title="View all posts filed under Art">领域技能</a></li>
-                        <li><a href="#" title="View all posts filed under Audio">时尚达人</a></li>
-                        <li><a href="#" title="View all posts filed under Link">心情随笔</a></li>
-                        <li><a href="#" title="View all posts filed under Quick Thoughts">饕餮美食</a></li>
-                        <li><a href="#" title="View all posts filed under Quotes">玩乐趣享</a></li>
-                        <li><a href="#" title="View all posts filed under Uncategorized">其它</a></li>
-                    </ul>
-                </div>
+               @include('layouts.right_cate')
 
 
                 <!-- #sidebar -->

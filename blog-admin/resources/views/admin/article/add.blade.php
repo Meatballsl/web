@@ -128,24 +128,20 @@
         var ue = UE.getEditor('editor');
     </script>
 
-    <script type="text/javascript">
-        <?php $timestamp = time();?>
-        $(function () {
-            $('#file_upload').uploadify({
-                'formData': {
-
-                    'timestamp': '<?php echo $timestamp;?>',
-                    '_token': '{{csrf_token()}}'
-                },
-                'buttonText' : '上传图片',
-                'swf': "{{asset('resources/org/uploadify/uploadify.swf')}}",
-                'uploader': "{{url('admin/upload')}}",
-                'onUploadSuccess' : function(file, data, response) {
-                    $('input[name=thumb]').val(data);
-                    $('#small_thumb').attr('src','/'+data);
-                }
-            });
+<script>
+    $(function () {
+        $('#file_upload').uploadify({
+            'formData': {
+                '_token': '{{csrf_token()}}'
+            },
+            'buttonText' : '上传图片',
+            'swf': "{{asset('resources/org/uploadify/uploadify.swf')}}",
+            'uploader': "{{url('admin/upload')}}",
+            'onUploadSuccess' : function(file, data, response) {
+                $('input[name=thumb]').val(data);
+                $('#small_thumb').attr('src','/'+data);
+            }
         });
-    </script>
-
+    });
+</script>
 @endsection
