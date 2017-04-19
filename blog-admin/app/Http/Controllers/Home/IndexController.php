@@ -23,7 +23,8 @@ class IndexController extends CommonController
         $cateDetail = Category::where('id',$id)->first();
         $cateList = Category::where('pid',$id)->get();
         $check = 'cate';
-        return view('home.category',compact('check','cateList','cateDetail'));
+        $cate = Category::where('pid',0)->orderby('id')->get();
+        return view('home.category',compact('check','cateList','cateDetail','cate'));
 
     }
 
@@ -36,20 +37,22 @@ class IndexController extends CommonController
 
     public function classify(Request $request,$id)
     {
+        $cate = Category::where('pid',0)->orderby('id')->get();
         $cateDetail = Category::where('id',$id)->first();
         $article = Article::where(['status'=>2,'cid'=>$id])->paginate(15);
         $check = '';
         $user = Users::getUserName();
-        return view('home.classify',compact('check','article','user','cateDetail'));
+        return view('home.classify',compact('check','article','user','cateDetail','cate'));
 
     }
 
     public function article(Request $request,$id)
     {
+        $cate = Category::where('pid',0)->orderby('id')->get();
         $check ='';
         $user = Users::getUserName();
         $article = Article::where('id',$id)->first();
-        return view('home.article',compact('check','article','user'));
+        return view('home.article',compact('check','article','user','cate'));
 
     }
 

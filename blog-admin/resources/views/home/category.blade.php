@@ -58,7 +58,7 @@
                             <div class="caption"><span>查看</span></div>
                         </a>
                     </div>
-                    <h4 class="entry-title"><a rel="bookmark" href="portfolio-single.html">{{$val['name']}}</a></h4>
+                    <h4 class="entry-title"><a rel="bookmark" href="{{url('/classify/')}}/{{$val['id']}}">{{$val['name']}}</a></h4>
 
                 </li>
                     @endforeach

@@ -58,7 +58,7 @@
                 ><a href="{{url('/index')}}">首页</a></li>
 
                 <li @if($check=='cate')class="current-menu-item" @endif
-                ><a href="{{url('/cate')}}">分类专栏</a></li>
+                ><a href="{{url('/cate/1')}}">分类专栏</a></li>
 
                 <li @if($check=='auther')class="current-menu-item" @endif
                 ><a href="{{url('/auther')}}">作家专栏</a></li>
@@ -116,7 +116,7 @@
             <ul class="nav-footer">
                 <li class="current-menu-item"><a href="{{url('/index')}}">首页</a></li>
 
-                <li><a href="{{url('/cate')}}">分类专栏</a></li>
+                <li><a href="{{url('/cate/1')}}">分类专栏</a></li>
                 <li><a href="{{url('/auther')}}">作家专栏</a></li>
                 <li><a href="discuss.html">在线聊天室</a></li>
                 <li><a href="{{url('/blog')}}">我的博客</a></li>
