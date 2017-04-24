@@ -10,7 +10,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('resources/org/uploadify/uploadify.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('resources/org/uploadify/upload.css')}}">
 
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script src="{{asset('resources/views/admin/style/js/1.7.1/jquery.min.js')}}" type="text/javascript"></script>
 
 
     <script type="text/javascript" src="{{asset('resources/views/admin/style/js/jquery.js')}}"></script>
