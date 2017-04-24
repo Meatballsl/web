@@ -34,8 +34,8 @@ Route::get('/auther','Home\IndexController@auther');
 Route::get('/classify/{id}','Home\IndexController@classify');
 Route::get('/article/{id}','Home\IndexController@article');
 Route::get('/blog','Home\IndexController@blog');//要先登录哦
-
-
+Route::get('/register','Home\IndexController@register');//
+Route::post('/register','Home\IndexController@registerPost');//
 
 
 
