@@ -33,9 +33,16 @@ Route::get('/cate/{id}','Home\IndexController@category');
 Route::get('/auther','Home\IndexController@auther');
 Route::get('/classify/{id}','Home\IndexController@classify');
 Route::get('/article/{id}','Home\IndexController@article');
-Route::get('/blog','Home\IndexController@blog');//要先登录哦
-Route::get('/register','Home\IndexController@register');//
-Route::post('/register','Home\IndexController@registerPost');//
+
+Route::get('/register','Home\RegisterController@register');//注册
+Route::post('/register','Home\RegisterController@registerPost');//
+
+Route::resource('/login','Home\LoginController');  //登陆
+Route::get('code','Home\LoginController@code');
+Route::group(['middleware'=>['web','user.login']],function (){
+    Route::get('/blog','Home\IndexController@blog');//个人博客页
+    Route::resource('info', 'Home\PersonInfoController');  //个人信息页
+});
 
 
 

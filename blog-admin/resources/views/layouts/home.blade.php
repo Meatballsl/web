@@ -75,6 +75,9 @@
         <!-- #primary-nav -->
 
     </header>
+    <div>
+        @include('layouts.messages')
+    </div>
 
 @yield('body_part')
 

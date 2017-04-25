@@ -26,7 +26,7 @@
     });
 </script>
 <!--SIGN UP-->
-<h1>klasikal Login Form</h1>
+<h1>Uknow Blog 注册</h1>
 <div class="login-form">
     <div class="close"></div>
     <div class="head-info">
@@ -62,7 +62,7 @@
             <input type="password" name="password_confirmation">
         </div>
         <div class="signin">
-            <input type="submit" value="Login">
+            <input type="submit" value="Register">
         </div>
     </form>
 
