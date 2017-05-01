@@ -14,7 +14,15 @@
   <!-- #primary -->
 <div id="primary"> 
   <!-- #content -->
-  请先完善个人信息
+  <div>
+    @if(session('user')->user_status==2)
+      <a href="{{url('home/email')}}">请绑定邮箱</a>
+    @else
+    <a href="{{url('home/info/create')}}">请先完善个人信息</a>
+      @endif
+  </div>
+    <div><a href="{{url('home/article')}}">文章列表</a></div>
+    <div><a href="{{url('home/quit')}}" >退出</a></div>
   <!-- /#content --> 
 </div>
 <!-- /#primary -->

@@ -26,16 +26,6 @@ class LoginController extends CommonController
 
     }
 
-    /**GET
-     *login/create
-     * 创建
-     */
-    public function create()
-    {
-        $data = Category::where('pid', 0)->get();
-        return view('admin.category.add')->with('data', $data);
-
-    }
 
     /**
      * POST
@@ -44,29 +34,24 @@ class LoginController extends CommonController
      */
     public function store(Request $request)
     {
-        $input = $request->all();
-
-        $rule = [
-            'name' => 'required',
-        ];
-
-        $message = [
-            'name.required' => 'name not allow null'
-        ];
+        if($input = $request->all()){
 
 
-        $validate = Validator::make($input, $rule, $message);
+            $user = Users::where('user_login',$input['user_login'])->first();
 
-        if (!$validate->passes()) {
-            return back()->withErrors($validate);
+            if(!$user){
+                return back()->with('msg','账号不存在');
+            }
+
+            if($input['password']!==Crypt::decrypt($user['user_pass'])){
+                return back()->with('msg',' 密码错误');
+            }
+
+            session(['user'=>$user]);
+            session()->flash('success', '欢迎'.$user['user_login'].'，登陆成功');
+            return redirect('index');
 
         }
-        $add = Category::create($input);
-
-        if (!$add) {
-            return back()->with("msg", "add error");
-        }
-        return redirect('admin/cate');
     }
 
 

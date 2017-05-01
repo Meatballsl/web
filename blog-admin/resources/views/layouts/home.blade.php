@@ -12,12 +12,28 @@
     <link rel="stylesheet" type="text/css" media="all"
           href="{{asset('resources/views/home/style/css/responsive.css')}}"/>
     <!-- Google Font -->
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,700italic' rel='stylesheet'
-          type='text/css'>
+    {{--<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,700italic' rel='stylesheet'--}}
+          {{--type='text/css'>--}}
+
+    <link rel="stylesheet" href="{{asset('resources/org/ueditor/change.css')}}">
+
+    <link rel="stylesheet" type="text/css" href="{{asset('resources/org/uploadify/uploadify.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('resources/org/uploadify/upload.css')}}">
+
+
+    <script type="text/javascript" src="{{asset('resources/views/home/style/js/jquery-1.7.2.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('resources/org/easyform/js/easyform.js')}}"></script>
     <!--[if lt IE 9]>
     <script src="{{asset('resources/views/home/style/js/html5.js')}}" type="text/javascript"></script>
     <![endif]-->
-    <script type="text/javascript" src="{{asset('resources/views/home/style/js/jquery-1.7.2.min.js')}}"></script>
+
+
+    <script type="text/javascript" src="{{asset('resources/org/layer/layer.js')}}"></script>
+
+    <script type="text/javascript" charset="utf-8" src="{{asset('resources/org/ueditor/ueditor.config.js')}}"></script>
+    <script type="text/javascript" charset="utf-8" src="{{asset('resources/org/ueditor/ueditor.all.min.js')}}"> </script>
+    <script type="text/javascript" charset="utf-8" src="{{asset('resources/org/ueditor/lang/zh-cn/zh-cn.js')}}"></script>
+
 </head>
 
 
@@ -36,7 +52,8 @@
             <li class="dribbble"><a href="#">Dribbble</a></li>
             <li class="vimeo"><a href="#">Vimeo</a></li>
             <li class="skype"><a href="#">Skype</a></li>
-            <li class="rss"><a href="http://sc.chinaz.com">RSS</a></li>
+            <li class="login"><a href="{{url('login')}}">RSS</a></li>
+            <li class="register"><a href="{{url('register')}}">注册</a></li>
         </ul>
         <!-- /#social -->
 
@@ -63,11 +80,11 @@
                 <li @if($check=='auther')class="current-menu-item" @endif
                 ><a href="{{url('/auther')}}">作家专栏</a></li>
 
-                <li @if($check=='index')class="current-menu-item" @endif
-                ><a href="#">在线聊天室</a></li>
+                <li @if($check=='info')class="current-menu-item" @endif
+                ><a href="{{url('home/person')}}">个人主页</a></li>
 
                 <li @if($check=='blog')class="current-menu-item" @endif
-                ><a href="{{url('/blog')}}">我的博客</a></li>
+                ><a href="{{url('home/blog')}}">我的博客</a></li>
 
             </ul>
 
@@ -121,8 +138,8 @@
 
                 <li><a href="{{url('/cate/1')}}">分类专栏</a></li>
                 <li><a href="{{url('/auther')}}">作家专栏</a></li>
-                <li><a href="discuss.html">在线聊天室</a></li>
-                <li><a href="{{url('/blog')}}">我的博客</a></li>
+                <li><a href="{{url('home/person')}}">个人主页</a></li>
+                <li><a href="{{url('home/blog')}}">我的博客</a></li>
             </ul>
         </nav>
         <div id="copyright">&copy; Copyright &copy; 2013.Company name All rights reserved.</div>

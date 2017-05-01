@@ -30,7 +30,7 @@
 <div class="login-form">
   <div class="close"></div>
   <div class="head-info">
-    <label class="lbl-1"> </label>
+    <label class="lbl-1" onclick="returnIndex()"></label>
     <label class="lbl-2"> </label>
     <label class="lbl-3"> </label>
   </div>
@@ -44,10 +44,10 @@
     @endforeach
   @endif
 
-  @if(session('success'))
-    {{session('success')}}
+  @if(session('msg'))
+    {{session('msg')}}
   @endif
-  <form action="{{url('/register')}}" method="post">
+  <form action="{{url('/login')}}" method="post">
 
     {{csrf_field()}}
     <input type="text" class="login" name="user_login">
@@ -65,7 +65,11 @@
   </form>
 
 </div>
-
+<script>
+  function returnIndex() {
+     location.href="{{url('index')}}"
+  }
+</script>
 </body>
 </html>
 

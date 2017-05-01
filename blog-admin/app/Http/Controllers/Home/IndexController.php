@@ -70,6 +70,14 @@ class IndexController extends CommonController
 
     }
 
+    //退出
+    public function quit()
+    {
+        session(['user'=>null]);
+        return redirect('index');
+
+    }
+
 
 
 

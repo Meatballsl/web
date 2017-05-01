@@ -14,16 +14,18 @@ class PersonInfoController  extends CommonController
 {
 
     /**GET
-     * info
+     * home/person
      * 查看列表
      */
     public function index(Request $request)
     {
-        $check = '';
+        $check = 'info';
         $user = session('user');
         return view('home.person',compact('check','user'));
 
     }
+
+
 
 
 

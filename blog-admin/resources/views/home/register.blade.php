@@ -30,7 +30,7 @@
 <div class="login-form">
     <div class="close"></div>
     <div class="head-info">
-        <label class="lbl-1"> </label>
+        <label class="lbl-1" onclick="returnIndex()"> </label>
         <label class="lbl-2"> </label>
         <label class="lbl-3"> </label>
     </div>
@@ -67,7 +67,11 @@
     </form>
 
 </div>
-
+<script>
+    function returnIndex() {
+        location.href="{{url('index')}}"
+    }
+</script>
 </body>
 </html>
 

@@ -1,93 +1,95 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Home;
 
 use App\Models\Article;
+
 use App\Models\Category;
+use App\Models\Users;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Validator;
 
-class ArticleController extends CommonController
+
+class InfoController extends CommonController
 {
+
     /**GET
-     * admin/article
+     * info
      * 查看列表
      */
     public function index()
     {
 
-        $data = Article::orderBy('id')->paginate(10);
-
-        $status = ['0'=>'未审核','1'=>'审核中','审核通过'];
-
-        return view('admin.article.index',compact('data','status'));
+       // return view('home.info.add',compact('data','status','check','users'));
 
     }
 
     /**GET
-     *admin/article/create
+     *info/create
      * 创建
      */
     public function create()
     {
-        $data = Category::getCategory();
-        return view('admin.article.add')->with('data', $data);
-
+        $userid = session('user')->id;
+        $check = '';
+        $users = Users::getUserName();
+        return view('home.info.add',compact('check','users'));
     }
 
     /**
      * POST
-     * admin/article
+     * info
      * 添加
      */
     public function store(Request $request)
     {
-        $input = $request->all();
+        $input = $request->except('_token','avatar');
 
-        $rule = [
-            'title' => 'required',
-        ];
+        $thumb = $this->upload($request);
 
-        $message = [
-            'title.required' => 'title not allow null'
-        ];
-
-        $validate = Validator::make($input, $rule, $message);
-
-        if (!$validate->passes()) {
-            return back()->withErrors($validate);
-
+        if(!$thumb){
+            return back()->with("msg", "头像上传失败");
         }
 
-        $input['auther'] = session('user')->id;
-        $input['status'] = 0;
-        $add = Article::create($input);
 
-        if (!$add) {
+        $userId = session('user')->id;
+
+        $data = $input;
+        $data['user_status'] = 2;
+        $data['avatar'] = $thumb;
+        $save = Users:: where('id',$userId)->update($data);
+
+        if (!$save) {
             return back()->with("msg", "add error");
         }
-        return redirect('admin/article');
+
+        $user = Users::where('id',$userId)->first();
+        session(['user'=>$user]);
+
+        return redirect('home/person');
 
     }
 
 
     /**
-     * admin/article/{cate}/edit
+     * home/info/{cate}/edit
      * GET|HEAD
-     * 修改
+     * 修改(未用)
      */
     public function edit(Request $request, $id)
     {
         $field = Article::find($id);//前端无需遍历
 
         $data = Category::getCategory();
-        return view('admin.article.edit', compact('field', 'data'));
+        $check = '';
+        return view('home.article.edit', compact('field', 'data','check'));
     }
 
     /**
      * PUT|PATCH
-     * admin/article/{cate}
-     * 更新
+     * home/info/{cate}
+     * 更新（未用）
      * 前端： <input type="hidden" name="_method" value="put">
      */
     public function update(Request $request, $id)
@@ -100,7 +102,7 @@ class ArticleController extends CommonController
             return back()->with('msg', 'update error');
         }
 
-        return redirect('admin/article');
+        return redirect('home/article');
 
 
     }
@@ -108,8 +110,8 @@ class ArticleController extends CommonController
 
     /**
      * DELETE
-     * admin/article/{cate}
-     * 删除
+     * home/info/{cate}
+     * 删除（未用）
      */
     public function destroy(Request $request, $id)
     {

@@ -56,6 +56,8 @@ class RegisterController extends CommonController
             $user->user_email = $input['user_email'];
             $user->user_pass = Crypt::encrypt($input['password']);
             $user->user_type = 2;
+            $user->user_status = 1;
+            $user->create_time = date('Y-m-d',time());
             $result = $user->save();
 
             if(!$result){
@@ -66,6 +68,7 @@ class RegisterController extends CommonController
 
             session()->flash('success', '欢迎，您将在这里开启一段新的旅程~');
             session(['user'=>$user]);
+
             return redirect('info');
 
 

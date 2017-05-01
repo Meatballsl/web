@@ -40,8 +40,12 @@ Route::post('/register','Home\RegisterController@registerPost');//
 Route::resource('/login','Home\LoginController');  //登陆
 Route::get('code','Home\LoginController@code');
 Route::group(['middleware'=>['web','user.login']],function (){
-    Route::get('/blog','Home\IndexController@blog');//个人博客页
-    Route::resource('info', 'Home\PersonInfoController');  //个人信息页
+    Route::get('home/blog','Home\IndexController@blog');//个人博客页
+    Route::get('home/person', 'Home\PersonInfoController@index');  //个人主页信息页
+    Route::resource('home/info', 'Home\InfoController');  //个人信息页
+    Route::resource('home/article', 'Home\ArticleController');
+    Route::any('home/quit','Home\IndexController@quit');
+    Route::any('home/email','Home\EmailController@index');//邮箱
 });
 
 

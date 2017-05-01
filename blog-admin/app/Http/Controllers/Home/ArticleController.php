@@ -1,43 +1,49 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Home;
 
 use App\Models\Article;
+
 use App\Models\Category;
+use App\Models\Users;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Validator;
 
 class ArticleController extends CommonController
 {
+
     /**GET
-     * admin/article
+     * article
      * 查看列表
      */
     public function index()
     {
-
-        $data = Article::orderBy('id')->paginate(10);
+        $userid = session('user')->id;
+        $data = Article::where('auther',$userid)->orderBy('id')->paginate(10);
 
         $status = ['0'=>'未审核','1'=>'审核中','审核通过'];
-
-        return view('admin.article.index',compact('data','status'));
+        $users = Users::getUserName();
+        $check = '';
+        return view('home.article.index',compact('data','status','check','users'));
 
     }
 
     /**GET
-     *admin/article/create
+     *article/create
      * 创建
      */
     public function create()
     {
+        $check = '';
         $data = Category::getCategory();
-        return view('admin.article.add')->with('data', $data);
+        return view('home.article.add',compact('check','data'));
 
     }
 
     /**
      * POST
-     * admin/article
+     * article
      * 添加
      */
     public function store(Request $request)
@@ -66,7 +72,7 @@ class ArticleController extends CommonController
         if (!$add) {
             return back()->with("msg", "add error");
         }
-        return redirect('admin/article');
+        return redirect('home/article');
 
     }
 
@@ -81,7 +87,8 @@ class ArticleController extends CommonController
         $field = Article::find($id);//前端无需遍历
 
         $data = Category::getCategory();
-        return view('admin.article.edit', compact('field', 'data'));
+        $check = '';
+        return view('home.article.edit', compact('field', 'data','check'));
     }
 
     /**
@@ -100,7 +107,7 @@ class ArticleController extends CommonController
             return back()->with('msg', 'update error');
         }
 
-        return redirect('admin/article');
+        return redirect('home/article');
 
 
     }
