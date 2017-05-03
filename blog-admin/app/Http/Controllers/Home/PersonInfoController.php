@@ -20,7 +20,8 @@ class PersonInfoController  extends CommonController
     public function index(Request $request)
     {
         $check = 'info';
-        $user = session('user');
+        $userId = session('user')->id;
+        $user = Users::where('id',$userId)->first();
         return view('home.person',compact('check','user'));
 
     }

@@ -37,9 +37,22 @@ class LoginController extends CommonController
         if($input = $request->all()){
 
 
-            $user = Users::where('user_login',$input['user_login'])->first();
+            $userByUserLogin = Users::where('user_login',$input['user_login'])->first();
+            $userByUserEmail = Users::where([
+                ['user_email','=',$input['user_login']],
+                ['user_status','=',3]
+            ])->first();
 
-            if(!$user){
+            if($userByUserLogin){
+                $user = $userByUserLogin;
+            }
+            if($userByUserEmail){
+                $user = $userByUserEmail;
+            }
+
+
+
+            if(empty($user)){
                 return back()->with('msg','账号不存在');
             }
 
