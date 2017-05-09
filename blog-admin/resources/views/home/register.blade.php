@@ -51,7 +51,6 @@
 
         {{csrf_field()}}
         <input type="text" class="login" name="user_login">
-        <input type="text" class="email" name="user_email">
 
         <div class="key">
             <input type="password" name="password">
@@ -69,7 +68,7 @@
 </div>
 <script>
     function returnIndex() {
-        location.href="{{url('index')}}"
+        location.href = "{{url('index')}}"
     }
 </script>
 </body>

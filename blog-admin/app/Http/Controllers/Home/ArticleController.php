@@ -20,12 +20,15 @@ class ArticleController extends CommonController
     public function index()
     {
         $userid = session('user')->id;
-        $data = Article::where('auther',$userid)->orderBy('id')->paginate(10);
+        $data = Article::where('auther', $userid)->orderBy('id')->paginate(10);
 
-        $status = ['0'=>'未审核','1'=>'审核中','审核通过'];
+        $status = ['0' => '未审核', '1' => '审核中', '审核通过'];
+        $yesOr = ['1'=>'是','0'=>'否'];
         $users = Users::getUserName();
         $check = '';
-        return view('home.article.index',compact('data','status','check','users'));
+
+
+        return view('home.article.index', compact('data', 'status', 'check', 'users','yesOr'));
 
     }
 
@@ -37,7 +40,7 @@ class ArticleController extends CommonController
     {
         $check = '';
         $data = Category::getCategory();
-        return view('home.article.add',compact('check','data'));
+        return view('home.article.add', compact('check', 'data'));
 
     }
 
@@ -65,6 +68,10 @@ class ArticleController extends CommonController
 
         }
 
+        if($input['is_top']==1){
+            Article::where('is_top',1)->update(['is_top'=>0]);
+        }
+
         $input['auther'] = session('user')->id;
         $input['status'] = 0;
         $add = Article::create($input);
@@ -88,7 +95,7 @@ class ArticleController extends CommonController
 
         $data = Category::getCategory();
         $check = '';
-        return view('home.article.edit', compact('field', 'data','check'));
+        return view('home.article.edit', compact('field', 'data', 'check'));
     }
 
     /**
@@ -101,9 +108,12 @@ class ArticleController extends CommonController
     {
         $input = $request->except(['_method', '_token']);
 
+        if($input['is_top']==1){
+            Article::where('is_top',1)->update(['is_top'=>0]);
+        }
         $result = Article::where('id', $id)->update($input);
 
-        if ($result===false) {
+        if ($result === false) {
             return back()->with('msg', 'update error');
         }
 
@@ -121,17 +131,17 @@ class ArticleController extends CommonController
     public function destroy(Request $request, $id)
     {
 
-        $result = Article::where('id',$id)->delete();
+        $result = Article::where('id', $id)->delete();
 
-        if(!$result){
+        if (!$result) {
             return [
-                'code'=>1,
-                'msg'=>'delete error'
+                'code' => 1,
+                'msg' => 'delete error'
             ];
         }
         return [
-            'code'=>0,
-            'msg'=>'delete success'
+            'code' => 0,
+            'msg' => 'delete success'
         ];
     }
 

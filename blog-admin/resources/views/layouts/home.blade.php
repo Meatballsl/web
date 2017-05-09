@@ -13,7 +13,7 @@
           href="{{asset('resources/views/home/style/css/responsive.css')}}"/>
     <!-- Google Font -->
     {{--<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,700italic' rel='stylesheet'--}}
-          {{--type='text/css'>--}}
+    {{--type='text/css'>--}}
 
     <link rel="stylesheet" href="{{asset('resources/org/ueditor/change.css')}}">
 
@@ -22,17 +22,14 @@
 
 
     <script type="text/javascript" src="{{asset('resources/views/home/style/js/jquery-1.7.2.min.js')}}"></script>
-    <script type="text/javascript" src="{{asset('resources/org/easyform/js/easyform.js')}}"></script>
-    <!--[if lt IE 9]>
-    <script src="{{asset('resources/views/home/style/js/html5.js')}}" type="text/javascript"></script>
-    <![endif]-->
 
 
     <script type="text/javascript" src="{{asset('resources/org/layer/layer.js')}}"></script>
 
     <script type="text/javascript" charset="utf-8" src="{{asset('resources/org/ueditor/ueditor.config.js')}}"></script>
-    <script type="text/javascript" charset="utf-8" src="{{asset('resources/org/ueditor/ueditor.all.min.js')}}"> </script>
-    <script type="text/javascript" charset="utf-8" src="{{asset('resources/org/ueditor/lang/zh-cn/zh-cn.js')}}"></script>
+    <script type="text/javascript" charset="utf-8" src="{{asset('resources/org/ueditor/ueditor.all.min.js')}}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{{asset('resources/org/ueditor/lang/zh-cn/zh-cn.js')}}"></script>
 
 </head>
 
@@ -42,7 +39,7 @@
 
     <!-- #header-top -->
     <div id="header-top" class="clearfix">
-        <div class="left"> T. 05468 951332 | E. info@apollo.com</div>
+        <div class="left"> T. 0592 1111111 | E. info@UknowBlog.com</div>
 
         <!-- #social -->
         <ul id="social" class="clearfix">
@@ -64,7 +61,8 @@
     <header id="header" class="clearfix">
         <!-- #logo -->
         <div id="logo">
-            <h1><a href="index.html"> <img alt="Apollo" src="{{asset('resources/views/home/style/2012/04/apollo-logo.png')}}"></a>
+            <h1><a href="index.html"> <img alt="Apollo"
+                                           src="{{asset('resources/views/home/style/2012/04/apollo-logo.png')}}"></a>
             </h1>
         </div>
         <!-- /#logo -->
@@ -80,12 +78,17 @@
                 <li @if($check=='auther')class="current-menu-item" @endif
                 ><a href="{{url('/auther')}}">作家专栏</a></li>
 
-                <li @if($check=='info')class="current-menu-item" @endif
-                ><a href="{{url('home/person')}}">个人主页</a></li>
+                @if(session('user'))
+                    <li><a href="{{url('home/person/'.session('user')->id)}}">个人主页</a></li>
+                @else
+                    <li><a href="{{url('/login')}}">个人主页</a></li>
+                @endif
 
-                <li @if($check=='blog')class="current-menu-item" @endif
-                ><a href="{{url('home/blog')}}">我的博客</a></li>
-
+                @if(session('user'))
+                    <li @if($check=='blog') class="current-menu-item" @endif><a  href="{{route('myself_blog',['blog',session('user')->id])}}">我的博客</a></li>
+                @else
+                    <li @if($check=='blog') class="current-menu-item" @endif><a   href="{{url('/login')}}">我的博客</a></li>
+                @endif
             </ul>
 
         </nav>
@@ -138,8 +141,17 @@
 
                 <li><a href="{{url('/cate/1')}}">分类专栏</a></li>
                 <li><a href="{{url('/auther')}}">作家专栏</a></li>
-                <li><a href="{{url('home/person')}}">个人主页</a></li>
-                <li><a href="{{url('home/blog')}}">我的博客</a></li>
+                @if(session('user'))
+                <li><a href="{{url('home/person/'.session('user')->id)}}">个人主页</a></li>
+                @else
+                    <li><a href="{{url('/login')}}">个人主页</a></li>
+                @endif
+
+                @if(session('user'))
+                    <li><a href="{{route('myself_blog',['blog',session('user')->id])}}">我的博客</a></li>
+                @else
+                <li><a href="{{url('/login')}}">我的博客</a></li>
+                @endif
             </ul>
         </nav>
         <div id="copyright">&copy; Copyright &copy; 2013.Company name All rights reserved.</div>

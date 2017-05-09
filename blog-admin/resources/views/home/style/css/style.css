@@ -55,7 +55,8 @@ nav ul,nav ol{list-style:none;list-style-image:none}
 img{border:0;-ms-interpolation-mode:bicubic}
 svg:not(:root){overflow:hidden}
 figure{margin:0}
-form{margin:0}
+form{margin:0;}
+.form2{margin:0;margin-left:-45px}
 fieldset{border:1px solid #c0c0c0;margin:0 2px;padding:.35em .625em .75em}
 legend{border:0;padding:0;white-space:normal;*margin-left:-7px}
 button,input,select,textarea{font-size:100%;margin:0;vertical-align:baseline;*vertical-align:middle}
@@ -178,7 +179,7 @@ h1, h2, h3, h4, h5, h6 {font-weight:bold; margin: 0 0 10px;	color:#3a3a40;}
 #site-container { 
 	margin: 0 auto; 
 	background:#fff;
-	width: 960px;
+	width: 1000px;
 	padding:0 25px;
 	box-shadow:0 0 10px rgba(0,0,0,0.1);}
 #content {float:left;width: 670px;margin:0 45px 0 0;}

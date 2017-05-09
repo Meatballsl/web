@@ -9,8 +9,8 @@
         <!-- #page-header -->
 
         <div id="page-header">
-            <h1>{{$user['user_login']}}的博客</h1>
-            <p>{{$user['person_sign']}}</p>
+            <h1>{{$user['user_nicename']}}的博客</h1>
+            <p>{{$user['signature']}}</p>
         </div>
         <!-- /#page-header -->
 
@@ -22,7 +22,7 @@
                     <article class="post format-standard hentry clearfix">
                         <div class="entry-thumb">
 
-                            <img src="{{$val['thumb']}}" alt=""/>
+                            <img src="/{{$val['thumb']}}" alt=""/>
 
                         </div>
                         <div class="entry-meta ">
@@ -33,10 +33,9 @@
                                 </li>
                                 <li><span>By</span> <a href="#" title="Posts by Chris Mooney" rel="author">{{$users[$val['auther']]}}</a>
                                 </li>
-                                <li><span>In</span> <a href="#">place?</a></li>
-                                <li><span>With</span> <a href=""
-                                                         title="Comment on The Martians had been repulsed">No
-                                        Comments</a>
+
+                                <li><span>With</span> @if($val['is_comment']===1)<a>Can Comment</a>@else<a >No Comments</a>@endif</li>
+
                                 </li>
                             </ul>
                         </div>

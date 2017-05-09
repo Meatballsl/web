@@ -33,7 +33,7 @@
         <!--结果集标题与导航组件 结束-->
 
         <div class="result_wrap">
-            <form method="post" action="{{url('home/article')}}/{{$field->id}}">
+            <form class="form2" method="post" action="{{url('home/article')}}/{{$field->id}}">
                 {{csrf_field()}}
                 <input type="hidden" name="_method" value="put">
                 <table class="add_tab">

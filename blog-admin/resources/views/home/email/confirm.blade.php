@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>注册确认链接</title>
+    <title>激活确认链接</title>
 </head>
 <body>
 <h1>感谢您在Uknow Blog网站进行邮箱验证！</h1>

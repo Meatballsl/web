@@ -26,14 +26,11 @@ class RegisterController extends CommonController
         if($input){
             $rules = [
                 'user_login'=>'required',
-                'user_email'=>'required|email',
                 'password'=>'required|between:6,20|confirmed',
 
             ];
             $msg = [
                 'user_login.required'=>'用户名非空',
-                'user_email.required'=>'邮箱非空',
-                'user_email.email'=>'邮箱格式错误',
                 'password.required'=>'密码非空' ,
                 'password.between'=>'密码长度为6-20为',
                 'password.confirmed'=>'两个密码不一致'
@@ -45,15 +42,14 @@ class RegisterController extends CommonController
                 return back()->withErrors($validate);
             }
 
-            $exist = Users::where('user_email',$input['user_email'])->orWhere('user_login',$input['user_login'])->first();
+            $exist = Users::where('user_login',$input['user_login'])->first();
 
             if($exist){
-                $validate->errors()->add('msg','该邮箱已经被注册过或该用户名已存在');
+                $validate->errors()->add('msg','该用户名已被注册');
                 return back()->withErrors($validate);
             }
             $user = new Users();
             $user->user_login = $input['user_login'];
-            $user->user_email = $input['user_email'];
             $user->user_pass = Crypt::encrypt($input['password']);
             $user->user_type = 2;
             $user->user_status = 1;
@@ -69,7 +65,7 @@ class RegisterController extends CommonController
             session()->flash('success', '欢迎，您将在这里开启一段新的旅程~');
             session(['user'=>$user]);
 
-            return redirect('info');
+            return redirect('home/person');
 
 
         }

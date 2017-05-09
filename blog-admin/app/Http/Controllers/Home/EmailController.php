@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Mail;
+
 
 class EmailController extends CommonController
 {
@@ -28,47 +28,45 @@ class EmailController extends CommonController
             $userEmail = $input['user_email'];
 
             $exist = Users::where([
-                    ['user_email', "=",$input['user_email']],
-                    ['id','<>',$userId],
-                ])->first();
+                ['user_email', "=", $input['user_email']],
+                ['id', '<>', $userId],
+            ])->first();
             if ($exist) {
                 return back()->with('msg', "该邮箱已经存在，请重新输入");
             }
 
             $sameEmail = Users::where([
-                ['id','=',$userId],
-                ['user_email','=',$input['user_email']]
+                ['id', '=', $userId],
+                ['user_email', '=', $input['user_email']]
             ])->first();
 
-            if(!$sameEmail){
-                $updateEmail = Users::where('id',$userId)->update(['user_email'=>$userEmail]);
+            if (!$sameEmail) {
+                $updateEmail = Users::where('id', $userId)->update(['user_email' => $userEmail]);
 
-                if(!$updateEmail){
+                if (!$updateEmail) {
                     return back()->with('msg', "邮箱更新失败");
                 }
             }
 
 
+            $activation_token = str_random(10) . time();
 
+            $addToken = Users::where('id', $userId)->update(['activation_token' => $activation_token]);
 
-
-
-            $activation_token = str_random(10).time();
-
-            $addToken = Users::where('id',$userId)->update(['activation_token'=>$activation_token]);
-
-            if(!$addToken){
+            if (!$addToken) {
                 return back()->with('msg', "token保存失败");
             }
 
-            $user = Users::where('id',$userId)->first();
+            $user = Users::where('id', $userId)->first();
 
-            $this->sendEmailConfirmationTo($user);
+            $view = 'home.email.confirm';
+            $subject = "感谢注册Uknow Blog应用！请确认你的邮箱。";
+
+            $this->sendEmailConfirmationTo($view, $user, 'user_email', $subject);
 
             session()->flash('msg', '验证邮件已发送到你的注册邮箱上，请注意查收。');
 
             return redirect("home/emailSend");
-
 
 
         } else {
@@ -81,45 +79,27 @@ class EmailController extends CommonController
     }
 
 
-    protected function sendEmailConfirmationTo($user)
-    {
-        $view = 'home.email.confirm';
-        $data = compact('user');
-        $from = env('MAIL_USERNAME','hello@example.com');
-        $name = env('MAIL_NAME','ukoblog');
-        $to = $user->user_email;
-        $subject = "感谢注册Uknow Blog应用！请确认你的邮箱。";
-
-
-        Mail::send($view, $data, function ($message) use ($from, $name, $to, $subject) {
-            $message->from($from, $name)->to($to)->subject($subject);
-        });
-    }
-
     public function emailSend()
     {
-        $check='';
-        return view('home.email.emailSend',compact('check'));
+        $check = '';
+        return view('home.email.emailSend', compact('check'));
 
     }
 
-    public function confirmEmail(Request $request,$token)
+    public function confirmEmail(Request $request, $token)
     {
-        $user = Users::where('activation_token',$token)->firstOrFail();
+        $user = Users::where('activation_token', $token)->firstOrFail();
 
         $user->activated = "1";
-        $user->activation_token="null";
+        $user->activation_token = "null";
         $user->user_status = 3;
         $user->save();
 
-        session()->flash('success',' 邮箱激活成功');
+        session()->flash('success', ' 邮箱激活成功');
         return redirect('home/emailSend');
 
 
-
     }
-
-
 
 
 }

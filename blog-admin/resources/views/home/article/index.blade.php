@@ -26,22 +26,26 @@
                 <div class="result_content">
                     <table class="list_tab">
                         <tr>
-                            <th class="tc">ID</th>
                             <th>标题</th>
-                            <th>作者</th>
                             <th>状态</th>
+                            <th>是否公开</th>
+                            <th>允许评论</th>
+                            <th>是否置顶</th>
                             <th>操作</th>
                         </tr>
 
                         @foreach($data as $value)
                             <tr>
 
-                                <td class="tc">{{$value->id}}</td>
+
                                 <td>
                                     <a href="{{url('/article/'.$value->id)}}">{{$value->title}}</a>
                                 </td>
-                                <td>{{$users[$value->auther]}}</td>
+
                                 <td>{{$status[$value->status]}}</td>
+                                <td>{{$yesOr[$value->is_public]}}</td>
+                                <td>{{$yesOr[$value->is_comment]}}</td>
+                                <td>{{$yesOr[$value->is_top]}}</td>
 
                                 <td>
                                     <a href="{{url('home/article/'.$value->id.'/edit')}}">修改</a>

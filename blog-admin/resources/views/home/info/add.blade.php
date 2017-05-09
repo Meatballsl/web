@@ -46,7 +46,7 @@
     </a>
 
     <!--  Made With Paper Kit  -->
-    <a href="{{url('home/person')}}" class="made-with-pk">
+    <a href="{{url('home/person',session('user')->id)}}" class="made-with-pk">
         <div class="brand">Ret</div>
         <div class="made-with">返回<strong>个人主页</strong></div>
     </a>
@@ -61,8 +61,7 @@
 
                     <div class="card wizard-card" data-color="orange" id="wizardProfile">
                         <form action="{{url('home/info')}}" method="post" enctype="multipart/form-data">
-                            <!--        You can switch " data-color="orange" "  with one of the next bright colors: "blue", "green", "orange", "red", "azure"          -->
-                            {{csrf_field()}}
+                                 {{csrf_field()}}
                             <div class="wizard-header text-center">
                                 <h3 class="wizard-title">完善个人信息</h3>
                                 @if(session('msg'))
@@ -123,7 +122,8 @@
                                         <div class="col-sm-5">
                                             <div class="form-group">
                                                 <label>个性签名</label>
-                                                <textarea name="signature" class="form-control" placeholder="" rows="9"></textarea>
+                                                <textarea name="signature" class="form-control" placeholder=""
+                                                          rows="9"></textarea>
                                             </div>
                                         </div>
 
@@ -201,7 +201,7 @@
                                                 <div class="input-group date form_date col-md-5" data-date=""
                                                      data-date-format="dd MM yyyy" data-link-field="dtp_input2"
                                                      data-link-format="yyyy-mm-dd">
-                                                    <input class="form-control" size="16" type="text"  value="" readonly>
+                                                    <input class="form-control" size="16" type="text" value="" readonly>
                                                     <span class="input-group-addon"><span
                                                                 class="glyphicon glyphicon-remove"></span></span>
                                                     <span class="input-group-addon"><span
@@ -215,7 +215,8 @@
                                             <div class="form-group">
                                                 <label class="control-label">所在地区： </label>
                                                 <fieldset id="global_location">
-                                                    <select class="country" data-first-title="选择国家" name="country"></select>
+                                                    <select class="country" data-first-title="选择国家"
+                                                            name="country"></select>
                                                     <select class="state" data-required="true" name="state"></select>
                                                     <select class="city" data-required="true" name="city"></select>
                                                     <select class="region" data-required="true" name="region"></select>
@@ -233,7 +234,7 @@
                                     <input type='button' class='btn btn-next btn-fill btn-warning btn-wd' name='next'
                                            value='Next'/>
                                     <input type='submit' class='btn btn-finish btn-fill btn-warning btn-wd'
-                                            value='Finish'/>
+                                           value='Finish'/>
                                 </div>
 
                                 <div class="pull-left">

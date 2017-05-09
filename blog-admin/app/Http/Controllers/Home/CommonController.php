@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Home;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
 
 class CommonController extends Controller
 {
@@ -27,5 +28,21 @@ class CommonController extends Controller
         return "uploads/".$fileName.".".$suffix;
 
 
+    }
+
+    //$user包括：token。email
+    protected function sendEmailConfirmationTo($view,$user,$param,$subject)
+    {
+
+        $data = compact('user');
+        $from = env('MAIL_USERNAME','hello@example.com');
+        $name = env('MAIL_NAME','ukoblog');
+        $to = $user->$param;
+
+
+
+        Mail::send($view, $data, function ($message) use ($from, $name, $to, $subject) {
+            $message->from($from, $name)->to($to)->subject($subject);
+        });
     }
 }
