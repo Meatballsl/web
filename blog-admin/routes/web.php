@@ -60,6 +60,9 @@ Route::group(['middleware' => ['web', 'user.login']], function () {
 
     Route::post('home/comment/reply', 'Home\ReplyController@replayToComment');//回复评论
 
+    Route::resource('home/message', 'Home\MessageController');  //留言功能
+
+
 
 
 
