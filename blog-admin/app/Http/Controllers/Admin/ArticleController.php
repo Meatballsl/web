@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Article;
 use App\Models\Category;
+use App\Models\Comment;
+use App\Models\Reply;
+use App\Models\Users;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -18,9 +21,11 @@ class ArticleController extends CommonController
 
         $data = Article::orderBy('id')->paginate(10);
 
+        $users = Users::getUserName();
+
         $status = ['0'=>'未审核','1'=>'审核中','审核通过'];
 
-        return view('admin.article.index',compact('data','status'));
+        return view('admin.article.index',compact('data','status','users'));
 
     }
 
@@ -129,5 +134,77 @@ class ArticleController extends CommonController
     }
 
 
+    public function verify(Request $request,$id)
+    {
+
+       $article = Article::find($id);
+
+       $article->status = 2;
+       $article->save();
+
+       return back()->with('msg','审核成功');
+
+     }
+
+//评论管理
+    public function comment(Request $request)
+    {
+        $comment = Comment::paginate(10);
+        $users = Users::getUserName();
+        return view('admin.article.comment' ,compact('comment','users'));
+     }
+
+//评论删除
+    public function commentDelete(Request $request,$id)
+    {
+
+
+        $deleteReply = Reply::where('comment_id',$id)->delete();
+        $deleteComment = Comment::where('id',$id)->delete();
+
+        if(!$deleteComment){
+            return [
+                'code'=>1,
+                'msg'=>'delete error'
+            ];
+        }
+        return [
+            'code'=>0,
+            'msg'=>'delete success'
+        ];
+
+     }
+
+
+     //回复管理
+    public function reply(Request $request)
+    {
+
+        $reply = Reply::paginate(10);
+        $users = Users::getUserName();
+        return view('admin.article.reply' ,compact('reply','users'));
+
+     }
+
+//回复删除
+    public function replyDelete(Request $request,$id)
+    {
+
+
+        $deleteReply = Reply::where('id',$id)->delete();
+
+
+        if(!$deleteReply){
+            return [
+                'code'=>1,
+                'msg'=>'delete error'
+            ];
+        }
+        return [
+            'code'=>0,
+            'msg'=>'delete success'
+        ];
+
+    }
 
 }

@@ -1,13 +1,17 @@
 <?php
 namespace App\Models;
 
+use App\Http\Controllers\Home\TopicController;
 use Illuminate\Database\Eloquent\Model;
+use Zizaco\Entrust\Traits\EntrustUserTrait;
 
 class Users extends Model
 {
     protected $table = 'lsl_user';
 
     public $timestamps = false;
+
+    use EntrustUserTrait;
 
     public static function getUserName()
     {
@@ -19,10 +23,12 @@ class Users extends Model
             foreach ($users as $key => $val) {
                 $id[$key] = $val['id'];
                 if(isset($val['user_nicename'])){
-                    $name[$key] = $val['user_nicename'];
+                    $name[$key]['user_name'] = $val['user_nicename'];
                 }else{
-                    $name[$key] = $val['user_login'];
+                    $name[$key]['user_name'] = $val['user_login'];
                 }
+
+                $name[$key]['avatar'] = $val['avatar'];
 
             }
 
@@ -75,4 +81,31 @@ class Users extends Model
     {
         return $this->followings->contains($user_id);
     }
+
+    public function message()
+    {
+        return $this->hasMany(Message::class,'user_id');
+     }
+
+
+    public function topic()
+    {
+        return $this->hasMany(Topic::class,'user_id');
+
+     }
+
+     //收藏的文章
+    public function article()
+    {
+        return $this->belongsToMany(Article::class,'lsl_collect','user_id','art_id');
+    }
+
+
+
+
+
+
+
+
+
 }

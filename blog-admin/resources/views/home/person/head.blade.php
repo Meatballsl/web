@@ -9,13 +9,7 @@
                 <div class="profile-content pull-left">
                     <h1 class="name">{{$user->user_nicename}}</h1>
                     <h2 class="desc">{{$user->signature}}</h2>
-                    <ul class="social list-inline">
-                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                        <li><a href="#"><i class="fa fa-github-alt"></i></a></li>
-                        <li class="last-item"><a href="#"><i class="fa fa-hacker-news"></i></a></li>
-                    </ul>
+
                 </div>
             </div>
             <div class="col-md-6">

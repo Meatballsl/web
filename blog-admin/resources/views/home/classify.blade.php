@@ -29,10 +29,10 @@
                                 <li><span>On</span>
                                     <time datetime="{{$val['created_at']}}">{{$val['created_at']}}</time>
                                 </li>
-                                <li><span>By</span> <a href="#" title="Posts by Chris Mooney" rel="author">
-                                        {{$user[$val['auther']]}}
+                                <li><span>By</span> <a href="{{url('home/person',$val['auther'])}}" title="Posts by Chris Mooney" rel="author">
+                                        {{$user[$val['auther']]['user_name']}}
                                     </a></li>
-                                <li><span>In</span> <a href="#">unknow </a></li>
+
                                 <li><span>With</span> <a href="#"
                                                          title="Comment on The Martians had been repulsed">No
                                         Comments</a></li>
@@ -65,13 +65,7 @@
             <!-- /#content -->
             <!-- #sidebar -->
             <aside id="sidebar" role="complementary">
-                <div class="widget-first widget widget_search clearfix">
-                    <form role="search" method="get" id="searchform" action="#">
-                        <input type="text" value="Search..." name="s" id="s"
-                               onblur="if (this.value == '')  {this.value = 'Search...';}" onfocus="if (this.value == 'Search...')
-{this.value = '';}"/>
-                    </form>
-                </div>
+            @include('layouts.search')
                @include('layouts.right_cate')
 
 

@@ -20,6 +20,16 @@
                     <a href="{{url('admin/article/create')}}"><i class="fa fa-plus"></i>新增文章</a>
                 </div>
             </div>
+
+            @if(session('msg'))
+<hr>
+            <div class="result_content">
+                <div class="short_wrap">
+                    <a href="{{url('admin/article/create')}}">{{session('msg')}}</a>
+                </div>
+            </div>
+            @endif
+
         </div>
         <!--结果集标题与导航组件 结束-->
         <div class="result_wrap">
@@ -38,13 +48,15 @@
 
                             <td class="tc">{{$value->id}}</td>
                             <td>
-                                <a>{{$value->title}}</a>
+                                <a target="_blank" href="{{url('article',$value->id)}}">{{$value->title}}</a>
                             </td>
-                            <td>{{$value->auther}}</td>
+                            <td>{{$users[$value->auther]['user_name']}}</td>
                             <td>{{$status[$value->status]}}</td>
 
                             <td>
-                                <a href="{{url('admin/article/'.$value->id.'/edit')}}">修改</a>
+                                @if($value->status===2) @else
+                                <a href="{{url('admin/article/verify',$value->id)}}">审核</a>
+                                @endif
                                 <a onclick="deleteHadle({{$value->id}})">删除</a>
                             </td>
                         </tr>

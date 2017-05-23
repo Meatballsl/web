@@ -15,4 +15,10 @@ class Article extends Model
     {
         return $this->hasMany(Comment::class);
     }
+
+    public function user()
+    {
+        return $this->belongsToMany(Users::class,'lsl_collect','art_id','user_id');
+
+    }
 }

@@ -23,7 +23,12 @@ class PersonInfoController extends CommonController
 
         $user = Users::where('id', $userId)->first();
         $myUser = Users::where('id',session('user')->id)->first();
-        return view('home.person.person', compact('check', 'user','myUser'));
+        $topArticle = Article::where([
+            ['auther','=',$userId],
+            ['is_top','=',1],
+            ['status','=',2]
+        ])->orderBy('created_at','desc')->first();
+        return view('home.person.person', compact('check', 'user','myUser','topArticle'));
 
     }
 

@@ -26,7 +26,7 @@
     });
 </script>
 <!--SIGN UP-->
-<h1>Uknow Blog 注册</h1>
+<h1 style="color: #c5b143">Uknow Blog 注册</h1>
 <div class="login-form">
     <div class="close"></div>
     <div class="head-info">
@@ -40,7 +40,7 @@
     </div>
     @if(count($errors)>0)
         @foreach($errors->all() as $val)
-            <div class="mark">{{$val}}</div>
+            <div class="mark" style="color: #bce8f1">{{$val}}</div>
         @endforeach
     @endif
 

@@ -2,9 +2,10 @@
 <html dir="ltr" lang="en-US">
 
 <head>
+
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width; initial-scale=1.0">
-    <title>Apollo</title>
+    <title>UknowBlog</title>
     <!-- Stylesheet -->
     <link rel="stylesheet" href="{{asset('resources/views/admin/style/css/ch-ui.admin.css')}}">
 
@@ -14,6 +15,9 @@
     <!-- Google Font -->
     {{--<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,700italic' rel='stylesheet'--}}
     {{--type='text/css'>--}}
+
+    <link rel="apple-touch-icon" sizes="76x76" href="{{asset('resources/org/infoform/assets/img/apple-icon.png')}}"/>
+    <link rel="icon" type="image/png" href="{{asset('resources/org/infoform/assets/img/favicon.png')}}"/>
 
     <link rel="stylesheet" href="{{asset('resources/org/ueditor/change.css')}}">
 
@@ -31,6 +35,8 @@
     <script type="text/javascript" charset="utf-8"
             src="{{asset('resources/org/ueditor/lang/zh-cn/zh-cn.js')}}"></script>
 
+
+
 </head>
 
 
@@ -42,16 +48,32 @@
         <div class="left"> T. 0592 1111111 | E. info@UknowBlog.com</div>
 
         <!-- #social -->
-        <ul id="social" class="clearfix">
-            <li class="twitter"><a href="http://sc.chinaz.com">Twitter</a></li>
-            <li class="facebook"><a href="http://sc.chinaz.com">Facebook</a></li>
-            <li class="google"><a href="#">Google+</a></li>
-            <li class="dribbble"><a href="#">Dribbble</a></li>
-            <li class="vimeo"><a href="#">Vimeo</a></li>
-            <li class="skype"><a href="#">Skype</a></li>
-            <li class="login"><a href="{{url('login')}}">RSS</a></li>
-            <li class="register"><a href="{{url('register')}}">注册</a></li>
-        </ul>
+
+        <!-- JiaThis Button BEGIN -->
+        <div style="margin-left: 800px">
+            @if(session('user'))
+                用户：{{session('user')->user_login}}
+                &nbsp;&nbsp;<a style="color: #f0f0f0" href="{{url('home/quit')}}">退出</a>
+                @else
+                <a style="color: #f0f0f0" href="{{url('/login')}}"> 登录 </a>
+                &nbsp;&nbsp; <a style="color: #f0f0f0" target="_blank" href="{{url('/register')}}">注册</a>
+                &nbsp;&nbsp; <a style="color: #f0f0f0"  href="{{url('/password/email')}}">忘记密码</a>
+            @endif
+
+
+        </div>
+
+
+
+        <div id="ckepop" style="margin-left: 700px">
+
+            <span class="jiathis_txt">分享到：</span>
+            <a class="jiathis_button_tsina" style="color: #f0f0f0">新浪微博</a>
+            <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+            <a class="jiathis_counter_style"></a>
+        </div>
+        <script type="text/javascript" src="http://v2.jiathis.com/code/jia.js" charset="utf-8"></script>
+        <!-- JiaThis Button END -->
         <!-- /#social -->
 
     </div>
@@ -61,8 +83,8 @@
     <header id="header" class="clearfix">
         <!-- #logo -->
         <div id="logo">
-            <h1><a href="index.html"> <img alt="Apollo"
-                                           src="{{asset('resources/views/home/style/2012/04/apollo-logo.png')}}"></a>
+            <h1><a href="{{url('/index')}}">
+                    <img alt="Apollo" src="{{asset('resources/views/home/style/2012/04/uk.png')}}"></a>
             </h1>
         </div>
         <!-- /#logo -->
@@ -89,6 +111,10 @@
                 @else
                     <li @if($check=='blog') class="current-menu-item" @endif><a   href="{{url('/login')}}">我的博客</a></li>
                 @endif
+
+                <li @if($check=='topic') class="current-menu-item" @endif>
+                    <a href="{{url('home/topic')}}">话题讨论</a>
+                </li>
             </ul>
 
         </nav>
@@ -152,6 +178,10 @@
                 @else
                 <li><a href="{{url('/login')}}">我的博客</a></li>
                 @endif
+
+                <li @if($check=='topic') class="current-menu-item" @endif>
+                    <a href="{{url('home/topic')}}">话题讨论</a>
+                </li>
             </ul>
         </nav>
         <div id="copyright">&copy; Copyright &copy; 2013.Company name All rights reserved.</div>

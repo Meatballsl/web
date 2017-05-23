@@ -65,7 +65,7 @@ class RegisterController extends CommonController
             session()->flash('success', '欢迎，您将在这里开启一段新的旅程~');
             session(['user'=>$user]);
 
-            return redirect('home/person');
+            return redirect('home/info/create');
 
 
         }

@@ -42,6 +42,21 @@
                 </div>
             </section>
             <!-- /#content -->
+
+            @if(session('user'))
+                @if(session('user')->is_column===0)
+                    <div style="margin-left: 760px">
+                        <img src="{{asset('resources/views/home/style/images/notebook.png')}}">
+                        <h3 style="color: #99cb84"><a onclick="column()">申请成为专栏作家</a></h3>
+                    </div>
+
+                    @elseif(session('user')->is_column===2)
+                        <div style="margin-left: 760px">
+                            <img src="{{asset('resources/views/home/style/images/notebook.png')}}">
+                            <h3 style="color: #99cb84">您的专栏申请正在审核中</h3>
+                        </div>
+                    @endif
+            @endif
         </div>
         <!-- /#primary -->
         <!-- #footer -->
@@ -117,5 +132,22 @@
                     if (this.value != '') window.location.href = this.value;
                 }
         </script>
+        <script>
+            function column() {
+                layer.msg("您的申请已经提交");
+                $.post(
+                    "{{url('column')}}",
+                    {
 
+                        '_token': "{{csrf_token()}}",
+
+                    },
+                    function (data) {
+                        setTimeout(function () {
+                            location.href = location.href;
+                        },3000)
+                    }
+                );
+            }
+        </script>
 @endsection

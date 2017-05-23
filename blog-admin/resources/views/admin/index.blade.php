@@ -11,7 +11,7 @@
 	</div>
 	<div class="top_right">
 		<ul>
-			<li>管理员：admin</li>
+			<li>管理员：{{session('user')->name}}</li>
 			<li><a href="{{url('admin/pass')}}" target="main">修改密码</a></li>
 			<li><a href="{{url('admin/quit')}}">退出</a></li>
 		</ul>
@@ -23,33 +23,40 @@
 <div class="menu_box">
 	<ul>
 		<li>
-			<h3><i class="fa fa-fw fa-clipboard"></i>常用操作</h3>
+			<h3><i class="fa fa-fw fa-clipboard"></i>文章管理</h3>
 			<ul class="sub_menu">
-				<li><a href="{{url('admin/cate')}}" target="main"><i class="fa fa-fw fa-plus-square"></i>分类管理</a></li>
-				<li><a href="{{url('admin/article')}}" target="main"><i class="fa fa-fw fa-plus-square"></i>文章管理</a></li>
-				{{--<li><a href="category/list.blade.php" target="main"><i class="fa fa-fw fa-list-ul"></i>列表页</a></li>--}}
-				{{--<li><a href="tab.html" target="main"><i class="fa fa-fw fa-list-alt"></i>tab页</a></li>--}}
-				{{--<li><a href="img.html" target="main"><i class="fa fa-fw fa-image"></i>图片列表</a></li>--}}
+				<li><a href="{{url('admin/cate')}}" target="main"><i class="fa fa-fw fa-list-ul"></i>分类管理</a></li>
+				<li><a href="{{url('admin/article')}}" target="main"><i class="fa fa-fw fa-list-ul"></i>文章管理</a></li>
+				<li><a href="{{url('admin/comment')}}" target="main"><i class="fa fa-fw fa-list-ul"></i>评论管理</a></li>
+				<li><a href="{{url('admin/reply')}}" target="main"><i class="fa fa-fw fa-list-ul"></i>回复管理</a></li>
+
 			</ul>
 		</li>
 		<li>
-			<h3><i class="fa fa-fw fa-cog"></i>系统设置</h3>
+			<h3><i class="fa fa-fw fa-comment"></i>话题管理</h3>
 			<ul class="sub_menu">
-				<li><a href="#" target="main"><i class="fa fa-fw fa-cubes"></i>网站配置</a></li>
-				<li><a href="#" target="main"><i class="fa fa-fw fa-database"></i>备份还原</a></li>
+				<li><a href="{{url('admin/topic')}}" target="main"><i class="fa fa-fw fa-cubes"></i>话题管理</a></li>
+				<li><a href="{{url('admin/follower')}}" target="main"><i class="fa fa-fw fa-database"></i>跟帖管理</a></li>
+				<li><a href="{{url('admin/followerComment')}}" target="main"><i class="fa fa-fw fa-database"></i>回复管理</a></li>
 			</ul>
 		</li>
 		<li>
-			<h3><i class="fa fa-fw fa-thumb-tack"></i>会员管理</h3>
+			<h3><i class="fa fa-fw fa-male"></i>会员管理</h3>
 			<ul class="sub_menu">
-				<li><a href="http://www.yeahzan.com/fa/facss.html" target="main"><i class="fa fa-fw fa-font"></i>图标调用</a></li>
-				<li><a href="http://hemin.cn/jq/cheatsheet.html" target="main"><i class="fa fa-fw fa-chain"></i>Jquery手册</a></li>
-				<li><a href="http://tool.c7sky.com/webcolor/" target="main"><i class="fa fa-fw fa-tachometer"></i>配色板</a></li>
-				<li><a href="element.html" target="main"><i class="fa fa-fw fa-tags"></i>其他组件</a></li>
+				<li><a href="{{url('admin/user')}}" target="main"><i class="fa fa-fw fa-child"></i>会员管理</a></li>
+				<li><a href="{{url('admin/column_vefify')}}" target="main"><i class="fa fa-fw fa-pencil"></i>专栏管理</a></li>
 			</ul>
 		</li>
 		<li>
 			<h3><i class="fa fa-fw fa-thumb-tack"></i>权限管理</h3>
+			<ul class="sub_menu">
+				<li><a href="{{url('admin/admin_user')}}" target="main"><i class="fa fa-fw fa-female"></i>管理员管理</a></li>
+				<li><a href="{{url('admin/role')}}" target="main"><i class="fa fa-fw fa-spoon"></i>角色管理</a></li>
+
+			</ul>
+		</li>
+		<li>
+			<h3><i class="fa fa-fw fa-institution"></i>应用库</h3>
 			<ul class="sub_menu">
 				<li><a href="http://www.yeahzan.com/fa/facss.html" target="main"><i class="fa fa-fw fa-font"></i>图标调用</a></li>
 				<li><a href="http://hemin.cn/jq/cheatsheet.html" target="main"><i class="fa fa-fw fa-chain"></i>Jquery手册</a></li>

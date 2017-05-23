@@ -9,6 +9,7 @@
         <!-- /#header -->
         <!-- #primary -->
         <div id="primary" class="clearfix">
+
             <!-- #content -->
             <section id="content" role="main" class="fullwidth">
                 <div id="feature" class="clearfix">
@@ -53,26 +54,12 @@
                 <div id="home-blocks" class="clearfix">
                     <h3 class="deco"><span class="outer"><span class="inner">热门文章</span></span></h3>
                     <ul class="clearfix">
+                        @foreach($recomment as $key=>$val)
                         <li>
-                            <h3>shiro 单点登录原理 实例</h3>
-                            <p>Shiro 1.2开始提供了Jasig
-                                CAS单点登录的支持，单点登录主要用于多系统集成，即在多个系统中，用户只需要到一个中央服务器登录一次即可访问这些系统中的任何一个，无须多次登录。 Ja...</p>
+                            <h3><a href="{{url('article',$val['id'])}}">{{$val['title']}}</a></h3>
+                            <p>{{$val['summary']}}</p>
                         </li>
-                        <li>
-                            <h3>【iOS沉思录】UITableView的重用机制与加载优化详解</h3>
-                            <p>
-                                UITableView可以说是UIKit中最重要的一个组件，用来展示数据列表，还可以灵活使用进行页面的布局。UITableView的使用遵循MVC模式，数据模型（NSObject）、视图（UIView...</p>
-                        </li>
-                        <li>
-                            <h3>mybatis--映射文件详解</h3>
-                            <p>Mybatis映射文件 一、输入映射 parameterType 指定输入参数的java类型，可以使用别名或者类的全限定名。它可以接收简单类型、POJO、HashMap。
-                                1、传递简单类型...</p>
-                        </li>
-                        <li>
-                            <h3>学会如何调试程序bug</h3>
-                            <p>前言:---------- >学会如何调试程序bug 1.在开发中如何调试程序 ------------------(请看==》步骤一 至步骤 五)2.使用过哪些调试工具
-                                -----------...</p>
-                        </li>
+                      @endforeach
                     </ul>
                 </div>
                 <div id="home-portfolio" class="clearfix">

@@ -30,7 +30,7 @@
             @if(session("success"))
                 {{session('success')}}
                 <div style="color: #b6a338">
-                    <span id="totalSecond">5</span>s后将跳转到个人主页，若没响应，请点击<a href="{{url('home/person')}}">这里</a>
+                    <span id="totalSecond">5</span>s后将跳转到个人主页，若没响应，请点击<a href="{{url('home/person',session('user')->id)}}">这里</a>
                 </div>
 
                 <script>
@@ -38,7 +38,7 @@
                     setInterval("redirect()", 1000);
                     function redirect() {
                         totalSecond.innerText = --second;
-                        if (second <= 0) location.href = "{{url('home/person')}}";
+                        if (second <= 0) location.href = "{{url('home/person',session('user')->id)}}";
                     }
 
                 </script>

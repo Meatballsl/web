@@ -108,8 +108,9 @@ class ArticleController extends CommonController
     {
         $input = $request->except(['_method', '_token']);
 
+        $userId = session('user')->id;
         if($input['is_top']==1){
-            Article::where('is_top',1)->update(['is_top'=>0]);
+            Article::where('is_top',1)->where('auther',$userId)->update(['is_top'=>0]);
         }
         $result = Article::where('id', $id)->update($input);
 

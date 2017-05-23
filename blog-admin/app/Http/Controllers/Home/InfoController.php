@@ -67,7 +67,7 @@ class InfoController extends CommonController
         $user = Users::where('id',$userId)->first();
         session(['user'=>$user]);
 
-        return redirect('home/person');
+        return redirect('home/person/'.session('user')->id);
 
     }
 

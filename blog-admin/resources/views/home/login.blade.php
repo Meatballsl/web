@@ -26,7 +26,7 @@
     });
 </script>
 <!--SIGN UP-->
-<h1>Uknow Blog login</h1>
+<h1  style="color: #c5b143">Uknow Blog login</h1>
 <div class="login-form">
     <div class="close"></div>
     <div class="head-info">
@@ -38,14 +38,9 @@
     <div class="avtar">
         <img src="{{asset('resources/views/home/register/images/avtar.png')}}"/>
     </div>
-    @if(count($errors)>0)
-        @foreach($errors->all() as $val)
-            <div class="mark">{{$val}}</div>
-        @endforeach
-    @endif
 
     @if(session('msg'))
-        {{session('msg')}}
+        <div class="mark" style="color: #f0f0f0"> {{session('msg')}}</div>
     @endif
     <form action="{{url('/login')}}" method="post">
 

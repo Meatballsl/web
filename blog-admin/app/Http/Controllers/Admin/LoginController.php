@@ -1,10 +1,11 @@
 <?php
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Users;
+use App\User;
 use Illuminate\Support\Facades\Crypt;
 use Symfony\Component\Console\Input\Input;
 use Symfony\Component\HttpFoundation\Request;
+use Illuminate\Support\Facades\Auth;
 
 require_once "resources/org/code/Code.class.php";
 Class LoginController extends CommonController{
@@ -22,14 +23,27 @@ Class LoginController extends CommonController{
                 return back()->with('msg','验证码错误');
             }
 
-            $user = Users::find(1);
+           // $user = User::find(1);
 
-            if($user['user_login']!=$input['username']||Crypt::decrypt($user['user_pass'])!=$input['password']){
+//            if($user['name']!=$input['username']||Crypt::decrypt($user['password'])!=$input['password']){
+//                return back()->with('msg','账号或密码错误');
+//            }
+
+
+
+            $credentials = [
+                'name'    => $input['username'],
+                'password' => $input['password'],
+            ];
+
+            if (Auth::attempt($credentials)){
+                session(['user'=>Auth::user()]);
+                return redirect('admin/index');
+            }else{
                 return back()->with('msg','账号或密码错误');
             }
 
-            session(['user'=>$user]);
-            return redirect('admin/index');
+
 
         }else{
             return view('admin.login');

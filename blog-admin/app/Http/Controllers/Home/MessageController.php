@@ -6,6 +6,7 @@ use App\Models\Article;
 
 use App\Models\Category;
 use App\Models\Comment;
+use App\Models\Message;
 use App\Models\Users;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
@@ -21,13 +22,31 @@ class MessageController extends CommonController
     public function index()
     {
 
-        $users = Users::getUserName();
 
-
-
-        return view('home.message.index');
 
     }
+
+    /**GET
+     * message/2
+     * 查看列表()
+     */
+    public function show(Request $request,$id)
+    {
+        $users = Users::getUserName();
+
+        $userId = $id;
+        $user = Users::find($userId);
+
+        $message = $user->message()->paginate(7);
+
+
+
+
+        return view('home.message.index',compact('users','user','message'));
+
+    }
+
+
 
     /**GET
      *message/create
@@ -44,39 +63,26 @@ class MessageController extends CommonController
     /**
      * POST
      * message
-     * 添加(no)
+     * 添加()
      */
     public function store(Request $request)
     {
         $input = $request->all();
 
-        $rule = [
-            'title' => 'required',
-        ];
+        $input['follower_id'] = session('user')->id;
+        $input['status'] = 1;
+        $input['created_at'] = date('Y-m-d H:i:s',time());
 
-        $message = [
-            'title.required' => 'title not allow null'
-        ];
-
-        $validate = Validator::make($input, $rule, $message);
-
-        if (!$validate->passes()) {
-            return back()->withErrors($validate);
-
-        }
-
-        if($input['is_top']==1){
-            Article::where('is_top',1)->update(['is_top'=>0]);
-        }
-
-        $input['auther'] = session('user')->id;
-        $input['status'] = 0;
-        $add = Article::create($input);
+        $user =  Users::find($input['user_id']);
+        $add = $user->message()->create($input);
 
         if (!$add) {
-            return back()->with("msg", "add error");
+            return back()->with("msg", "系统异常，请稍后再试");
         }
-        return redirect('home/article');
+
+        return back()->with("msg", "留言成功");
+
+
 
     }
 
@@ -141,6 +147,50 @@ class MessageController extends CommonController
             'msg' => 'delete success'
         ];
     }
+
+
+    public function reply(Request $request)
+    {
+        $input = $request->all();
+
+        $message = Message::find($input['message_id']);
+        $input['created_at'] = date("Y-m-d H:i:s",time());
+
+        $result = $message->messageReply()->create($input);
+
+        if(!$result) {
+            return back()->with('msg', " 系统异常，请重试");
+        }
+
+        return back()->with('msg',"评论成功");
+
+
+     }
+
+    public function delete(Request $request)
+    {
+        $input = $request->all();
+
+
+        $result = Message::where('id',$input['id'])->delete();
+
+        if (!$result) {
+            return [
+                'code' => 1,
+                'msg' => 'delete error'
+            ];
+        }
+        return [
+            'code' => 0,
+            'msg' => 'delete success'
+        ];
+
+     }
+
+    public function replyDelete()
+    {
+
+     }
 
 
 }

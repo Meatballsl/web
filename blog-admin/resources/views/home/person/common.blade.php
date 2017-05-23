@@ -6,19 +6,20 @@
 <!--[if !IE]><!-->
 <html lang="en"> <!--<![endif]-->
 <head>
-    <title>UknowBlog-个人主页</title>
+    <title>UknowBlog</title>
     <!-- Meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Responsive HTML5 Website Landing Page for Developers">
     <meta name="author" content="Xiaoying Riley at 3rd Wave Media">
-    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="apple-touch-icon" sizes="76x76" href="{{asset('resources/org/infoform/assets/img/apple-icon.png')}}"/>
+    <link rel="icon" type="image/png" href="{{asset('resources/org/infoform/assets/img/favicon.png')}}"/>
     <style>
         .kk {
             margin: 0 auto;
             background: #fff;
-            width: 1000px;
+            width: 1050px;
             padding: 0 25px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }

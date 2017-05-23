@@ -12,7 +12,7 @@ class Comment extends Model
 
     public $timestamps = false;
 
-    public function artice()
+    public function article()
     {
         return $this->belongsTo(Article::class);
     }
