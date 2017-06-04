@@ -48,5 +48,6 @@
         "preferred-install": "dist",
         "sort-packages": true
     },
-    "zizaco/entrust": "5.2.x-dev"
+    "zizaco/entrust": "5.2.x-dev",
+    "fenos/notifynder": "3.*"
 }

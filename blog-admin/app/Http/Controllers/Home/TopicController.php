@@ -26,7 +26,7 @@ class TopicController extends CommonController
 
         $check = 'topic';
 
-        $topic = Topic::paginate(7);
+        $topic = Topic::orderBy('created_at','desc')->paginate(7);
         $users = Users::getUserName();
 
         return view('home.topic.index', compact('check','topic','users'));

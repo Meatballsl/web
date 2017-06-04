@@ -26,7 +26,7 @@ Route::group(['middleware' => ['web', 'admin.login'], 'prefix' => 'admin', 'name
     Route::post('changeOrder', 'CategoryController@changeOrder');
     Route::any('test', 'CategoryController@test');
    // Route::resource('article', 'ArticleController');
-    Route::post('upload', 'CommonController@upload');
+     Route::post('upload', 'CommonController@upload');
 
     Route::get('check','PermissionController@check');// roleToUser
     Route::get('noAllow','PermissionController@noAllow');//跳转到无权限页面

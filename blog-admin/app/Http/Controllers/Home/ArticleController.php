@@ -69,7 +69,8 @@ class ArticleController extends CommonController
         }
 
         if($input['is_top']==1){
-            Article::where('is_top',1)->update(['is_top'=>0]);
+            $userId = session('user')->id;
+            Article::where('is_top',1)->where('auther',$userId)->update(['is_top'=>0]);
         }
 
         $input['auther'] = session('user')->id;

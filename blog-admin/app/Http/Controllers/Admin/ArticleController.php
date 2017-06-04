@@ -19,7 +19,7 @@ class ArticleController extends CommonController
     public function index()
     {
 
-        $data = Article::orderBy('id')->paginate(10);
+        $data = Article::orderBy('id','desc')->paginate(10);
 
         $users = Users::getUserName();
 
@@ -149,7 +149,7 @@ class ArticleController extends CommonController
 //评论管理
     public function comment(Request $request)
     {
-        $comment = Comment::paginate(10);
+        $comment = Comment::orderBy('id','desc')->paginate(10);
         $users = Users::getUserName();
         return view('admin.article.comment' ,compact('comment','users'));
      }
@@ -180,7 +180,7 @@ class ArticleController extends CommonController
     public function reply(Request $request)
     {
 
-        $reply = Reply::paginate(10);
+        $reply = Reply::orderBy('id','desc')->paginate(10);
         $users = Users::getUserName();
         return view('admin.article.reply' ,compact('reply','users'));
 

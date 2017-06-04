@@ -16,7 +16,7 @@ class IndexController extends CommonController
     public function index()
     {
         $check = 'index';
-        $cate = Category::where('pid', 0)->orderby('id')->get();
+        $cate = Category::where('pid', 0)->orderby('id')->take(4)->get();
 
         if(empty(session('user'))){
             $recomment = Article::where('status',2)->where('is_public',1)->orderBy('created_at','desc')->take(4)->get();
@@ -96,6 +96,7 @@ class IndexController extends CommonController
         $article = Article::where([
             ['auther', '=', $userid],
             ['status', '=', 2],
+            ['is_public','=','1']
         ])->paginate(10);
         $cate = Category::where('pid', 0)->orderby('id')->get();
         $users = Users::getUserName();

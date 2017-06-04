@@ -17,6 +17,7 @@ class CategoryController extends CommonController
     {
         $data = Category::getCategory();
 
+
         return view('admin.category.list')->with('data', $data);
 
     }

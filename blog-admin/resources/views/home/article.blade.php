@@ -33,7 +33,7 @@
                             <li><span>On</span>
                                 <time datetime="{{$article['created_at']}}">{{$article['created_at']}}</time>
                             </li>
-                            <li><span>By</span> <a href="#" title="Posts by Chris Mooney"
+                            <li><span>By</span> <a href="{{url('home/person',$article['auther'])}}" title="Posts by Chris Mooney"
                                                    rel="author">{{$user[$article['auther']]['user_name']}}</a></li>
 
                             <li><span>With</span> @if($article['is_comment']===1)<a>Can Comment</a>@else<a >No Comments</a>@endif</li>

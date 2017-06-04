@@ -20,7 +20,7 @@ class TopicController extends CommonController
     //话题管理
     public function topic(Request $request)
     {
-        $topic = Topic::paginate(10);
+        $topic = Topic::orderBy('id','desc')->paginate(10);
         $users = Users::getUserName();
         return view('admin.topic.topic' ,compact('topic','users'));
     }
@@ -71,7 +71,7 @@ class TopicController extends CommonController
 //跟帖管理
     public function follower(Request $request)
     {
-        $follower = TopicFollower::paginate(10);
+        $follower = TopicFollower::orderBy('id','desc')->paginate(10);
         $users = Users::getUserName();
         return view('admin.topic.follower' ,compact('follower','users'));
      }
@@ -102,7 +102,7 @@ class TopicController extends CommonController
     public function followerComment(Request $request)
     {
 
-        $followerComment = TopicFollowerReply::paginate(10);
+        $followerComment = TopicFollowerReply::orderBy('id','desc')->paginate(10);
         $users = Users::getUserName();
         return view('admin.topic.followerComment' ,compact('followerComment','users'));
 

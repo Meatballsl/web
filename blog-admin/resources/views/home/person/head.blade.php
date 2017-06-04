@@ -1,6 +1,6 @@
 <header class="header">
     <div class="container">
-        <div class="col-md-12">
+        <div class="col-md-12 col-lg-12">
             <div class="col-md-6">
                 <img class="profile-image img-circle pull-left"
                      src="/{{$user->avatar}}" width="140px" alt="James Lee"/>
@@ -41,21 +41,21 @@
 
         </div>
 
-        <div class="col-md-12">
+        <div class="col-md-12 col-lg-12">
 
             <div class="col-md-6 col-md-offset-4">
-                <div class="col-md-3">
+                <div class="col-md-3 col-lg-3">
                     <a href="{{url('home/person',$myUser->id)}}" class="btn btn-info">
-                        <div class="made-with">返回<strong>个人主页</strong></div>
+                        <div class="made-with">返回<strong>主页</strong></div>
                     </a>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-3 col-lg-3">
                     <a href="{{url('index')}}" class="btn btn-success">
                         <div class="made-with">返回<strong>首页</strong></div>
                     </a>
                 </div>
                 @if(session('user')->id==$user->id)
-                    <div class="col-md-3">
+                    <div class="col-md-3 col-lg-3">
                         <a href="{{url('home/quit')}}" class="btn btn-warning">
                             <div class="made-with">退出</div>
                         </a>

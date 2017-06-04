@@ -33,10 +33,15 @@
                 <div class="content">
                     <div class="item">
                         <blockquote class="quote ">
-                            <p><i class="fa fa-quote-left" ></i> @if(mb_strlen($val['content'])>=143) {!! mb_substr($val['content'],0,142) !!}... @else {!! $val['content'] !!} @endif</p>
+                            <p><i class="fa fa-quote-left" ></i>
+                                @if(mb_strlen($val['content'])>=143) {!! mb_substr($val['content'],0,142) !!}... @else {!! $val['content'] !!} @endif</p>
                         </blockquote>
 
-                        <p class="source"><span class="name">{{$users[$val['user_id']]['user_name']}}</span><br /><span class="title">{{$val['created_at']}}</span></p>
+                        <p class="source">
+                            <span class="name">{{$users[$val['user_id']]['user_name']}}</span>
+                            <br />
+                            <span class="title">{{$val['created_at']}}</span>
+                        </p>
                     </div><!--//item-->
 
                     <p><a class="more-link" href="{{url('home/topic' ,$val['id'])}}"><i class="fa fa-external-link"></i> More on Linkedin</a></p>

@@ -137,7 +137,7 @@
             </div><!--//section-inner-->
         </section><!--//section-->
 
-        <audio  src="/resources/org/audiojs/music/梁咏琪 - 胆小鬼.mp3" autoplay="autoplay" ></audio>
+
 
         <script type="text/javascript" charset="utf-8" src="{{asset('resources/org/ueditor/ueditor.config.js')}}"></script>
         <script type = "text/javascript" charset = "utf-8" src ="{{asset('resources/org/ueditor/ueditor.all.min.js')}}"></script>

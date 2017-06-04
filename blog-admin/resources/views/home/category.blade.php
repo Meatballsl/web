@@ -31,7 +31,7 @@
 
                     <div class="entry-wrap">
 
-                        <h1 class="entry-title"><a href="#">{{$cateDetail['name']}}</a></h1>
+                        <h1 class="entry-title"><a href="{{url('/classify/')}}/{{$cateDetail['id']}}">{{$cateDetail['name']}}</a></h1>
                         <span class="div"></span>
                         <div class="entry-content">
                             {{$cateDetail['summary']}}

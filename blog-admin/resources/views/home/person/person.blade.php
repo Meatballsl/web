@@ -7,7 +7,7 @@
 
     <div class="container sections-wrapper">
         <div class="row">
-            <div class="primary col-md-4 ">
+            <div class="primary col-md-5 col-lg-5">
 
 
                 <section class="latest section">
@@ -68,7 +68,7 @@
                 @endif
 
             </div><!--//primary-->
-            <div class="secondary col-md-4 ">
+            <div class="secondary col-md-4 col-lg-4">
                 @include('home.person.stats')
                 <aside class="info aside section">
                     <div class="section-inner">
